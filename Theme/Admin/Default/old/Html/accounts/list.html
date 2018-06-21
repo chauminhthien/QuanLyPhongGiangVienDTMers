@@ -1,0 +1,122 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="col-sm-12" style="margin-bottom:5px">
+                        <k:if has_button>
+                            <k:if:var myaccount.is_admin>
+                                <button class="right-side-toggle btn btn-info btn-rounded pull-right m-l-20">
+                                    {k:var breadcrumb_button_name}
+                                </button>
+                            </k:if:var myaccount.is_admin>
+                        </k:if has_button>
+                    </div>
+                    <div class="table">
+                        <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                            <table id="myTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th style="width: 181px;">Name</th>
+                                        <th style="width: 271px;">Email</th>
+                                        <th style="width: 135px;">Phone</th>
+                                        <th style="width: 135px;">Agent</th>
+                                        <th style="width: 135px;">Status</th>
+                                        <th style="width: 135px;">Group</th>
+                                        <th style="width: 80px;" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <k:each listaccount>
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1">
+                                            <a href="{k:each listaccount.url_activity}">
+                                                <img src="{k:each:if listaccount:avatar}{k:each listaccount.avatar}{k:each:else listaccount:avatar}{k:var url_project}/Theme/Public/Default/Images/user.jpg{/k:each:if listaccount:avatar}" alt="user" class="img-circle" style="width: 30px; height: 30px;" /> 
+                                                {k:each listaccount.firstname} {k:each listaccount.lastname}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="mailto:{k:each listaccount.email}?bcc=ngvcanh.dev@gmail.com">{k:each listaccount.email}</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="sbC2C" data-id="{k:each listaccount.id}">{k:each listaccount.phone}</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="sbC2C" data-id="{k:each listaccount.id}">{k:each listaccount.exten}</a>
+                                        </td>
+                                        <td>
+                                            {k:each:if listaccount:actived}
+                                            <span class="label label-success">Active</span>
+                                            {k:each:else listaccount:actived}
+                                            <span class="label label-danger">Inactive</span>
+                                            {/k:each:if listaccount:actived}
+                                        </td>
+                                        <td>
+                                            <select class="select2">
+                                                <option value="0">--None group</option>
+                                                <k:each listgroup>
+                                                <option value="{k:each listgroup.id}" {k:var groups_{k:each listaccount.id}_{k:each listgroup.id}}>{k:each listgroup.name}</option>    
+                                                </k:each listgroup>
+                                            </select>
+                                        </td>
+                                        <td class="text-center">
+                                            <!-- <a href="{k:each listaccount.url_edit}" class="label label-info">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            &nbsp;&nbsp; -->
+                                            <div action="{k:var url_list}" method="post" class="label label-danger deleteGroups deleteItemList">
+                                                <input type="hidden" class="paramHidden" name="token" value="{k:var contacts_delete_token}" />
+                                                <input type="hidden" class="paramHidden" name="commit" value="{k:var contacts_delete_commit}" />
+                                                <input type="hidden" name="id" value="{k:each listaccount.id}" />
+                                                <i class="fa fa-trash-o"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </k:each listaccount>
+                                </tbody>
+                            </table>
+                            <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Showing {k:var paging_item_start} to {k:var paging_item_end} of {k:var paging_item_total} entries</div>
+                            <div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate">
+                                <k:if:var paging_btn_prev>
+                                    <a class="paginate_button fitst" href="{k:var url_contacts}">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                    <a class="paginate_button previous" href="{k:var paging_btn_prev}">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </k:if:var paging_btn_prev>
+                                <k:if dotted_left>
+                                    <span class="paginate_button p-0" style="font-size: 25px;">&hellip;</span>
+                                </k:if dotted_left>
+                                <span>
+                                    <k:each paging_button>
+                                        <a href="{k:each paging_button.url}" class="paginate_button {k:each paging_button.cur_class}" aria-controls="myTable" data-dt-idx="{k:each paging_button.name}" tabindex="0">{k:each paging_button.name}</a>
+                                    </k:each paging_button>
+                                </span>
+                                <k:if dotted_right>
+                                    <span class="paginate_button p-0" style="font-size: 25px;">&hellip;</span>
+                                </k:if dotted_right>
+                                <k:if:var paging_btn_next>
+                                    <a class="paginate_button next" href="{k:var paging_btn_next}">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="paginate_button last" href="{k:var paging_btn_last}">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                </k:if:var paging_btn_next>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+        <k:inc right_sidebar>
+
+    </div>
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

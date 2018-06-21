@@ -1,0 +1,171 @@
+<div class="col-md-4 col-xs-12">
+    <div class="white-box">
+        
+        <div class="user-btm-box" style="padding-top: 0px;">
+            <div class="table-responsive">
+                <form method="post" action="{k:var url_edit}" class="leftEditForm senbacAjaxForm">
+                    <div class="col-md-12" style="margin: 5px;text-align:center">
+                        <input type="hidden" name="token" value="{k:var companies_edit_token}" />
+                        <input type="hidden" name="commit" value="{k:var companies_edit_commit}" />
+                        <button type="submit" class="btn btn-info btn-rounded hidden">Save</button>
+                        <button type="button" class="btn btn-outline btn-rounded btn-warning cancelForm hidden">Cancel</button>
+                        <button type="button" class="btn btn-info btn-rounded editForm">Edit</button>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Name</strong>
+                                </td>
+                                <td class="leftName">
+                                    <p id="leftName">{k:var companies.name}</p>
+                                    <input type="text" name="name" id="name" class="form-control hidden" value="{k:var companies.name}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Domain Name</strong>
+                                </td>
+                                <td class="leftDomainName">
+                                    <p id="leftDomainName"><a href="">{k:var companies.domain_name}</a></p>
+                                    <input type="text" name="domain_name" id="domain_name" class="form-control hidden" value="{k:var companies.domain_name}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone</strong></td>
+                                <td>
+                                    <p><a href="#" class="sbC2C" data-id="{k:var companies.id}">{k:var companies.phone}</a></p>
+                                    <input type="text" name="phone" id="phone" class="form-control hidden" placeholder="Phone" form-valid="str:7:15" value="{k:var companies.phone}"/>
+                                    <span class="help-block hidden">Range exceed of 7 - 15 characters</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Email</strong>
+                                </td>
+                                <td>
+                                    <p><a href="">{k:var companies.email}</a></p>
+                                    <input form-valid="email:7:100"  type="text" name="email" id="email" class="form-control hidden" value="{k:var companies.email}"/>
+                                    <span class="help-block hidden">Email invalid or range exceed of 7 - 100 characters</span>
+                                
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <hr>
+            </form>
+           
+            </div>
+        </div>
+
+        
+    </div>
+    <div class="white-box panel p-0">
+        <div class="panel-heading">
+            <b>{k:var companies.name}'s Contacts</b>
+            <div class="pull-right">
+                <a data-perform="panel-collapse">
+                    <i class="ti-minus"></i>
+                </a>
+                <a class="editContact">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="cancelContact hidden">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-wrapper panel-collapse collapse in" aria-expanded="true">
+            <div id="contact_name">
+                <ul class="list-group">
+                    <k:each listcontacts>
+                        <li class="list-group-item">                           
+                            {k:each listcontacts.firstname} {k:each listcontacts.lastname}
+                            <a method="post" action="{k:var url_contact_delete}" class="btn text-danger pull-right deleteItemList">
+                                <input type="hidden" name="token" value="{k:var companies_delete_contact_token}" />
+                                <input type="hidden" name="commit" value="{k:var companies_delete_contact_commit}" />
+                                <input type="hidden" name="company_id" value="{k:var companies.id}" />
+                                <input type="hidden" name="contact_id" value="{k:each listcontacts.id}" />
+                                <i class="fa fa-trash-o"></i>
+                            </a>                         
+                        </li>
+                    </k:each listcontacts>
+                </ul>
+                            
+                 
+               
+            </div>
+            <form class="p-0 showContact hidden senbacAjaxForm" method="post" action="{k:var url_edit}"> 
+                <div class="col-md-12 white-box panel form-group ">
+
+                    <input type="hidden" name="id" value="{k:var companies.id}">
+                    <input type="hidden" name="token" value="{k:var companies_change_token}" />
+                    <input type="hidden" name="commit" value="{k:var companies_change_commit}" />
+
+                    <select class="select2" name="contact_id" id="contact_of_company" multiple>
+                        <k:each listcontactsNull>
+                            <option value="{k:each listcontactsNull.id}">{k:each listcontactsNull.firstname} {k:each listcontactsNull.lastname}</option>
+                        </k:each listcontactsNull>
+                    </select>
+
+                    <button type="submit" class=" btn btn-success col-md-12" style="margin-top:10px;clear: both;">Add contact</button>
+                </div>
+            </form>
+            
+           <hr/>
+        </div>        
+    </div>
+    <div class="white-box panel p-0">
+        <div class="panel-heading">
+            <b>{k:var companies.name}'s Deals</b>
+            <div class="pull-right">
+                <a data-perform="panel-collapse">
+                    <i class="ti-minus"></i>
+                </a>
+                <a class="editDeal">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="cancelDeal hidden">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-wrapper panel-collapse collapse in" aria-expanded="true">  
+            <div id="deal_name">
+                <ul class="list-group">
+                            <k:each listdeals>
+                                    <li class="list-group-item">                                     
+                                        {k:each listdeals.name}                                     
+                                       
+                                        <a method="post" action="{k:var url_deal_delete}" class="btn text-danger pull-right deleteItemList">
+                                            <input type="hidden" name="token" value="{k:var companies_delete_deal_token}" />
+                                            <input type="hidden" name="commit" value="{k:var companies_delete_deal_commit}" />
+                                            <input type="hidden" name="company_id" value="{k:var companies.id}" />
+                                            <input type="hidden" name="deal_id" value="{k:each listdeals.id}" />
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>                                                      
+                                    </li>
+                                </k:each listdeals>
+                </ul>
+            </div>
+            <form class="p-0 showDeal hidden senbacAjaxForm" method="post" action="{k:var url_edit}"> 
+                <div class="col-md-12 white-box panel form-group ">
+
+                    <input type="hidden" name="id" value="{k:var companies.id}">
+                    <input type="hidden" name="token" value="{k:var companies_change_deal_token}"/>
+                    <input type="hidden" name="commit" value="{k:var companies_change_deal_commit}" />
+
+                    <select class="select2" name="deal_id" id="deal_of_company" multiple>
+                        <k:each listdealsNull>
+                            <option value="{k:each listdealsNull.id}">{k:each listdealsNull.name}</option>
+                        </k:each listdealsNull>
+                    </select>
+
+                    <button type="submit" class=" btn btn-success col-md-12" style="margin-top:10px;clear: both;">Add deal</button>
+                </div>
+            </form>
+            <hr/>
+        </div>
+    </div>
+    
+</div>

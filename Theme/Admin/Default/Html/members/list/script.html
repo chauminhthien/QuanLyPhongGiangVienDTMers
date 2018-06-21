@@ -1,0 +1,38 @@
+<script src="{k:var prefix_url_theme}/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script src="{k:var prefix_url_theme}/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script>
+    function replaceInput(){
+        new Switchery($('.js-switch')[0], $('.js-switch').data());
+    }
+
+    function interface_after_full_ajax_success(selector, response, type){
+        if ('create' == response.action){
+            $('.right-sidebar').removeClass('shw-rside');
+            $(selector)[0].reset();
+            $('#main-list').prepend(response.data);
+            replaceInput();
+        }
+    }
+
+    function interface_after_delete_success(selector){
+        let selectorTr = $(selector).parent().parent();
+        selectorTr.remove();
+    }
+
+    $(document).ready(function(){
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+
+        jQuery('.mydatepicker, #datepicker').datepicker();
+
+        $(document).on('change', '.onChange', function(){
+            let selector = $(this).parent().parent();
+
+            Validate.action(selector, {
+                ajaxError   : interface_ajax_error,
+                ajaxSuccess : interface_ajax_success,
+            });
+        });
+    })
+</script>

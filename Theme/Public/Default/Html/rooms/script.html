@@ -1,0 +1,74 @@
+
+<script src="{k:var prefix_url_theme}/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js">
+</script>
+<script src="{k:var prefix_url_theme}/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js">
+</script>
+<script>
+  let img = new Image();
+  img.src = '{k:var prefix_url_theme}/plugins/images/room.jpg';
+  img.style = 'sacascasc';
+
+  function interface_after_full_ajax_success(selector, response, type){
+    if ('filter' == response.action){
+      $('#list_room').html(response.data);
+
+      let canvans = $('canvas.imgRoms');
+
+      canvans.each(function(e){
+        let canvan      = this;
+        let ctx         = canvan.getContext('2d');
+        let text        = $(canvan).attr('text');
+
+        ctx.drawImage(img, 0, 0, canvan.width, canvan.height);
+        ctx.fillStyle = '#e60e0e';
+        ctx.font = '40px sans-serif';
+        ctx.fillText(text, 100, 140);
+      });
+    
+    }
+
+    if ('res_rooms' == response.action){
+      let { id } = response.data;
+
+      $('#room-' + id).remove();
+    }
+  }
+  
+    $(document).ready(function(){
+      jQuery('.mydatepicker, #datepicker').datepicker();
+
+      $('.clockpicker').clockpicker({
+          donetext: 'Done',
+      });
+
+      $(document).on('click', '.res-rooms', function(){
+        let it = $(this);
+        
+        let call_do_res = function(){
+          swal.close();
+          
+          Validate.action(it, {
+            beforeSend  : interface_before_send,
+            ajaxError   : interface_ajax_error,
+            ajaxSuccess : interface_ajax_success,
+            afterSend   : interface_after_send
+          });
+        };
+        swal({   
+            title: "Bạn muốn đăng ký phòng này?",  
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#fb0808",   
+            confirmButtonText: "Có. Tôi muốn đăng ký!",   
+            cancelButtonText: "Huỷ",   
+            closeOnConfirm: false,
+            closeOnCancel: true
+        }, function(isConfirm){
+            if (isConfirm) {
+              call_do_res();
+            }
+        });
+        return false;
+      });
+    })
+</script>

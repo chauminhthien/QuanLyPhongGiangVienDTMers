@@ -1,0 +1,111 @@
+<div id="page-wrapper" style="min-height: 228px;">
+        <div class="container-fluid">
+            <k:inc breadcrumb>
+            <!-- /row -->
+           
+                
+            <div class="row" > 
+    
+                
+                    <div class="white-box">
+                            <div class="row" style="padding:5px">
+                                <k:if has_button>
+                                    <k:if:var myaccount.is_admin>
+                                        <button class="right-side-toggle btn btn-info btn-rounded pull-right m-l-20">
+                                            {k:var breadcrumb_button_name}
+                                        </button>
+                                    </k:if:var myaccount.is_admin>
+                                </k:if has_button>
+                            </div>
+                            
+                        <div class="row">
+                                
+                            <div role="tabpanel" class="table-responsive tab-pane fade active in" id="board">
+                                <div class="board-container board-message overflow-x-auto justify-start align-stretch UIColumn-wrapper">
+                                        
+                                        <k:each listDealsProcess>
+                                            <div class="board-column-item-column flex-shrink-0 UIColumn-content">
+                                                <div class="board-column flex-column justify-between" data-selenium-test="board-column">
+                                                    <div class="board-column-inner flex-column">
+                                                        <header data-onboarding="board-column-header-4" class="p-y-4 p-x-2">
+                                                            <div class="align-start UIColumn-wrapper">
+                                                                <div class="UIColumn-spreads">
+                                                                    <h6 class="truncate-text m-all-0">{k:each listDealsProcess.name}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </header>
+                                                        <div class="board-column-list" id="process-{k:each listDealsProcess.id}"  data-id="{k:each listDealsProcess.id}">
+                                                            <k:each listDealsProcess.listDealsByProcess>
+                                                                <div class="p-x-2 card"  data-id="{k:each listDealsProcess.listDealsByProcess.id}"  data-selenium-test="board-column-item" draggable="true">
+                                                                    <div class="private-card  m-y-3">
+                                                                        <div class=" p-all-2">
+                                                                            <div class=" p-all-2">
+                                                                                <div class="p-x-1">
+                                                                                    <a class="private-link  m-bottom-1" href="{k:each listDealsProcess.listDealsByProcess.url_activity}">{k:each listDealsProcess.listDealsByProcess.name}</a>
+                                                                                    <div class="truncate-text">
+                                                                                    <span>₫{k:each listDealsProcess.listDealsByProcess.amount}</span>
+                                                                                           
+                                                                                    </div>
+                                                                                   
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </k:each listDealsProcess.listDealsByProcess>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="hidden">
+                                                    <div id="modal-{k:each listDealsProcess.id}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <form class="modal-dialog senbacAjaxForm" method="post" action="{k:var url_current}">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button data-id="{k:each listDealsProcess.id}" type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                    <h4 class="modal-title">Deal Move {k:each listDealsProcess.name}</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-horizontal">
+                                                                        <input type="hidden" name="id" id="{k:each listDealsProcess.id}" value="{k:each listDealsProcess.id}" />
+                                                                        <input type="hidden" name="process_id" value="{k:each listDealsProcess.id}" />
+                                                                        <input type="hidden" name="token" value="{k:var token_deals_change}" />
+                                                                        <input type="hidden" name="commit" value="{k:var commit_change_deals}" />
+                                                                        <k:each listDealsProcess.properties>
+                                                                            <k:inc property.{k:each listDealsProcess.properties.name}>
+                                                                        </k:each listDealsProcess.properties>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer m-3">
+                                                                    <button type="button" data-id="{k:each listDealsProcess.id}" class="btn modal-close btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-success waves-effect waves-light">Save changes</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-backdrop fade in" ></div>
+                                                </div>
+                                            </div>
+                                        </k:each listDealsProcess>
+                                       
+                                        <!-- react-empty: 586 -->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+            <!-- /.row -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <k:inc right_sidebar>
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- /.container-fluid -->
+        <div class="clearfix"></div>
+        <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+    </div>
+    

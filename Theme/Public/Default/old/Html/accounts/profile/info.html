@@ -1,0 +1,69 @@
+<div class="tab-pane active" id="tabinfo">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <form action="{k:var url_current}" method="post" class="senbacAjaxForm">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="email" class="control-label">Email</label>
+                                            <input readonly form-valid="email:7:100" value="{k:var myaccount.email}" name="email" type="email" id="email" class="form-control" placeholder="{k:var myaccount.email}">
+                                            <span class="help-block hidden"> Email Invalid </span> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstname" class="control-label">Firstname</label>
+                                            <input form-valid="str:1:100" value="{k:var myaccount.firstname}" name="firstname" id="firstname" class="form-control" placeholder="{k:var myaccount.firstname}">
+                                            <span class="help-block hidden"> Firstname Invalid </span> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname" class="control-label">Lastname</label>
+                                            <input form-valid="str:1:100" value="{k:var myaccount.lastname}" name="lastname" id="lastname" class="form-control" placeholder="{k:var myaccount.lastname}">
+                                            <span class="help-block hidden"> Lastname Invalid </span> 
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="phone" class="control-label">Phone</label>
+                                            <input name="phone" form-valid="str:7:15" value="{k:var myaccount.phone}" type="text" id="phone" class="form-control" placeholder="{k:var myaccount.phone}">
+                                            <span class="help-block hidden"> Phone invalid</span> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="home_address" class="control-label">Address</label>
+                                            <input name="home_address" form-valid="str:3:200" value="{k:var myaccount.home_address}" type="text" id="home_address" class="form-control" placeholder="{k:var myaccount.home_address}">
+                                            <span class="help-block hidden"> Address invalid or range exceed of 3 - 200 characters</span> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="company_address" class="control-label">Company Address</label>
+                                            <input name="company_address" form-valid="str:3:200" value="{k:var myaccount.company_address}" type="text" id="company_address" class="form-control" placeholder="{k:var myaccount.company_address}">
+                                            <span class="help-block hidden"> Address invalid or range exceed of 3 - 200 characters</span> 
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <input type="hidden" name="token" value="{k:var account_change_info_token}" />
+                                <input type="hidden" name="commit" value="{k:var account_change_info_commit}" />
+                                <button type="submit" class="btn btn-success"> Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

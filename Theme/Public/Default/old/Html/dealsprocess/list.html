@@ -1,0 +1,56 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <!-- /row -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="row" style="padding-right:15px">
+                        <k:if has_button>
+                            <k:if:var myaccount.is_admin>
+                                <button class="right-side-toggle btn btn-info btn-rounded pull-right m-l-20">
+                                    {k:var breadcrumb_button_name}
+                                </button>
+                            </k:if:var myaccount.is_admin>
+                        </k:if has_button>
+                    </div>
+                    <div class="table-responsive">
+                        <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                            <table id="myTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 181px;">Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 271px;">Ordering</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <k:each listDealsProcess>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                <a href="{k:each listDealsProcess.url_edit}">{k:each listDealsProcess.name}</a>
+                                            </td>
+                                            <td>
+                                                <a href="#">{k:each listDealsProcess.ordering}</a>
+                                            </td>
+                                        </tr>
+                                    </k:each listDealsProcess>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <k:inc right_sidebar>
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

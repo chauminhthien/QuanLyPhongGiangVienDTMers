@@ -1,0 +1,43 @@
+<script src="{k:var prefix_url_theme}/plugins/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+
+    function senbac_after_delete_success(selector){
+        $(selector).parent().parent().remove();
+    }
+
+    function senbac_after_full_ajax_success(selector, response, type){
+        if ('export' == response.action){
+            window.location.href = response.data;
+        }
+    }
+
+    function senbac_after_full_ajax_error(selector, type, xhr, status){ console.log('3');
+        window.location.href = xhr.responseText;
+    }
+
+    $(document).ready(function(){
+
+        $('.isDatePicker').datepicker({
+            inline : false,
+            dateFormat: 'dd-mm-yy',
+            constrainInput: true,
+            showOn: 'button',
+            buttonText: '<i class="icon-calender"></i>',
+            onSelect : function(dateText){
+                $(this).parent().find('.textDatepicker').text(dateText);
+            }
+        });
+
+        $(document).on('click', 'button.btn-export', function(){
+            Validate.action($('#codeExport'), {
+                beforeValid : senbac_before_validate,
+                validError : senbac_error_validate,
+                ajaxError : senbac_ajax_error,
+                ajaxSuccess : senbac_ajax_success
+            });
+
+            return false;
+        });
+
+    })
+</script>

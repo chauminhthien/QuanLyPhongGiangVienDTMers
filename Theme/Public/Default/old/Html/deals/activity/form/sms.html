@@ -1,0 +1,24 @@
+<div class="white-box">
+        <form method="post" action="{k:var url_sms}" class="senbacAjaxForm">
+            <div class="row">
+                <div class="col-md-1">To:</div>
+                <div class="col-md-11">{k:var deals.name}({k:var contact.phone})</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea class="form-control" name="content" form-valid="str:1:500" placeholder="Content message..."></textarea>
+                    <span class="help-block hidden">Range content message limit from 1 to 500 characters.</span>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="token" value="{k:var contacts_sms_token}" />
+                    <input type="hidden" name="commit" value="{k:var contacts_sms_commit}" />
+                    <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-pencil"></i> Send SMS</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>

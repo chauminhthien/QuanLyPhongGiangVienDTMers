@@ -1,0 +1,35 @@
+<div class="white-box">
+    <form method="post" action="{k:var url_note}" class="senbacAjaxForm">
+        <textarea class="form-control" name="content" placeholder="Start typing to leave a note..." form-valid="str:5"></textarea>
+        
+        <div style="margin-top: 10px;">
+            <p>
+                <button type="button" class="btn btn-outline btn-default btn-sm btnFiles">
+                    <i class="fa fa-paperclip"></i>
+                </button>
+                <input type="file" data-type="note" name="note_attach" form-valid="files:0:5:'txt',jpg,png,gif,bmp,doc,docx,xls,xlsx,ppt,pptx,csv,zip,rar:1:2000000" class="hidden pannelFiles" multiple /> 
+            </p>
+            <div id="noteAttach"></div>
+            <div id="noteNoneAttach"></div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="col-sm-6">
+                    <div class="checkbox checkbox-primary p-t-0">
+                        <input id="checkbox-notetask" name="create_task" value="1" type="checkbox">
+                        <label for="checkbox-notetask"> Create a task in </label> 
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="due_date_task" class="form-control isPicker" data-date-format="dd/mm/yy" readonly value="" />
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <input type="hidden" name="token" value="{k:var deals_note_token}" />
+                <input type="hidden" name="commit" value="{k:var deals_note_commit}" />
+                <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-pencil"></i> Add note</button>
+            </div>
+        </div>
+    </form>
+</div>

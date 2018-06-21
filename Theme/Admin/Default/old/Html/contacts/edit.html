@@ -1,0 +1,127 @@
+
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <!-- /row -->
+ 
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="el-element-overlay">
+                        <div class="el-card-item" style="padding-bottom: 0;">
+                            <div class="el-card-avatar el-overlay-1" style="text-align: center;">
+                                <div style="width: 100px; height: 100px; margin: 0 auto; display: inline-block; position: relative;">
+                                    <img style="width: 88px; height: 88px; display: inline-block;" class="img-circle contactsAvatar-{k:var contact.id}" src="<k:if:var contact.avatar>{k:var contact.avatar}<k:else:var contact.avatar>{k:var url_project}/Theme/Public/Default/Images/user.jpg</k:if:var contact.avatar>">
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li action="{k:var url_avatar}" method="post">
+                                                <a class="btn default btn-outline image-popup-vertical-fit btnSelectFile">
+                                                    <i class="mdi mdi-cloud-upload"></i>
+                                                </a>
+                                                <input type="hidden" name="token" value="{k:var contacts_avatar_token}" />
+                                                <input type="hidden" name="commit" value="{k:var contacts_avatar_commit}" />
+                                                <input type="file" name="avatar" form-upload="file:1:1:jpg,png:10:2000000" accept="image/jpeg,image/png" class="hidden autoUpload" />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="post" action="{k:var url_edit}" class="senbacAjaxForm">
+                        <div class="col-md-12" style="margin: 5px;text-align:center">
+                            <input type="hidden" name="token" value="{k:var contacts_edit_token}" />
+                            <input type="hidden" name="commit" value="{k:var contacts_edit_commit}" />
+                            <button type="submit" class="btn btn-info btn-rounded">Save</button>
+                        </div>
+                        <div class="user-btm-box" style="padding-top: 0;">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr class="fullNameEdit hidden">
+                                            <td>
+                                                <strong>First Name</strong>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="firstname" id="firstname" form-valid="str:1:100" class="hiddenBorder hidden" value="{k:var contact.firstname}"/>
+                                                <span class="help-block hidden">Range exceed of 1 - 100 characters</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="fullNameEdit hidden">
+                                            <td>
+                                                <strong>Last Name</strong>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="lastname" id="lastname" form-valid="str:1:100" class="hiddenBorder hidden" value="{k:var contact.lastname}"/>
+                                                <span class="help-block hidden">Range exceed of 1 - 100 characters</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong>Job Title</strong></td>
+                                            <td>
+
+                                                <input type="text" name="job_title" id="job_title" class="form-control" form-valid="str:0:200" placeholder="Job title" value="{k:var contact.job_title}" data-old="{k:var contact.job_title}" />
+                                                <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Phone</strong></td>
+                                            <td>
+                                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" form-valid="str:7:15" value="{k:var contact.phone}"/>
+                                                <span class="help-block hidden">Range exceed of 7 - 15 characters</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Email</strong></td>
+                                            <td>
+                                                <input type="text" name="email" id="email" class="form-control" form-valid="email:7:100" placeholder="Email" value="{k:var contact.email}"/>
+                                                <span class="help-block hidden">Email invalid or range exceed of 7 - 100 characters</span>
+                                            </td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td><strong>Home Address</strong></td>
+                                            <td>
+                                                <input type="text" name="home_address" id="home-address" class="form-control " form-valid="str:0:200" placeholder="Home address" value="{k:var contact.home_address}"/>
+                                                <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                            </td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td><strong>Company Address</strong></td>
+                                            <td>
+                                                <input type="text" name="company_address" id="company-address" class="form-control" form-valid="str:0:200" placeholder="Company address" value="{k:var contact.company_address}"/>
+                                                <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                            </td>
+                                        
+                                            </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                <hr>
+
+                        </div>
+                    </form>
+                   
+                </div>
+            
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

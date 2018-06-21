@@ -1,0 +1,12 @@
+<div class="form-group ">
+    <label for="contact_id" class="col-md-12">Contact</label>
+    <div class="col-md-12">
+        <select id="contact_id" form-valid="str:1" name="contact_id" class="form-control select2">
+            <option value="0">None Contact</option>
+            <k:each listContacts>
+                <option value="{k:each listContacts.id}" >{k:each listContacts.firstname} {k:each listContacts.lastname}</option>
+            </k:each listContacts>
+        </select>
+        <span class="help-block hidden">Select Owner</span>
+    </div>
+</div>

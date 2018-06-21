@@ -1,0 +1,51 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 m-t-30">
+                <div class="white-box">
+                    <form method="POST" action="{k:var url_current}" class="senbacAjaxForm">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" value="{k:var process.name}" class="form-control" form-valid="str:3:100">
+                            <span class="help-block hidden">Please insert name minimum 3 and maximum 100 character</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ordering</label>
+                            <input type="text" name="ordering" value="{k:var process.ordering}" class="form-control" form-valid="int:0:999" value="">
+                            <span class="help-block hidden">Please insert trunk.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Custom field</label>
+                            <select class="select2" name="extra"  multiple="multiple">
+                                <k:each property>
+                                    <option value="{k:each property.field}" {k:each property.selected}>{k:each property.name}</option>
+                                </k:each property>
+                                
+                            </select>
+                            <span class="help-block hidden">Please insert context.</span>
+                        </div>
+
+                        <div class="form-actions">
+                            <input type="hidden" name="token" value="{k:var deals_process_update_token}">
+                            <input type="hidden" name="commit" value="{k:var deals_process_update_commit}">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                            <a href="{k:var url_deals_process}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <k:inc right_sidebar>
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

@@ -1,0 +1,65 @@
+<div class="row">
+    <form action="{k:var url_current}" method="post" class="no-bg-addon formSubmit">
+    <div class="col-md-12">
+        <div class="white-box p-10-20 box">
+            <div class="row" >
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    <a href="{k:var url_user_list}" class="btn btn-flat btn-outline btn-info">Back to list</a>
+                </div>
+                <div class="col-md-6 col-xs-6 col-sm-6 ">
+                    <div class="form-actions pull-right">
+                        <input type="hidden" name="token" value="{k:var user_update_permission_token}">
+                        <input type="hidden" name="id" value="{k:var user.id}">
+                        <input type="hidden" name="commit" value="{k:var user_update_permission_commit}">
+                        <button type="submit" class="btn btn-flat btn-outline btn-info"> Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="white-box box box-info">
+            <center>
+                <h3 class="box-title m-b-0">Permissons user </h3>
+                <p class="text-muted m-b-30 font-13"> {k:var user.fullname}</p>
+            </center>
+            
+            <div class="row">
+                <div class="form-group col-md-12 m-b-0 m-t-15">
+                    <div class="checkbox checkbox-inverse">
+                        <input class="select-all" id="per-0" type="checkbox">
+                        <label for="per-0"> Select All </label>
+                    </div>
+                </div>
+            </div>
+            
+            <hr />
+            <k:each parentPers>
+                <div class="form-group">
+                    <div class="checkbox checkbox-inverse">
+                        <input name="per[]" value="{k:each parentPers.id}" {k:var per_checked_{k:each parentPers.id}} id="per-{k:each parentPers.id}" type="checkbox">
+                        <label for="per-{k:each parentPers.id}"> {k:each parentPers.name} </label>
+                    </div>
+                </div>
+                <k:each parentPers.subPers>
+                    <div class="form-group m-l-30">
+                        <div class="checkbox checkbox-inverse">
+                            <input name="per[]" value="{k:each parentPers.subPers.id}" {k:var per_checked_{k:each parentPers.subPers.id}} id="per-{k:each parentPers.subPers.id}" type="checkbox">
+                            <label for="per-{k:each parentPers.subPers.id}"> {k:each parentPers.subPers.name} </label>
+                        </div>
+                    </div>
+                    <k:each parentPers.subPers.pers>
+                        <div class="form-group m-l-60">
+                            <div class="checkbox checkbox-inverse">
+                                <input name="per[]" value="{k:each parentPers.subPers.pers.id}" {k:var per_checked_{k:each parentPers.subPers.pers.id}} id="per-{k:each parentPers.subPers.pers.id}" type="checkbox">
+                                <label for="per-{k:each parentPers.subPers.pers.id}"> {k:each parentPers.subPers.pers.name} </label>
+                            </div>
+                        </div>
+                    </k:each parentPers.subPers.pers>
+                </k:each parentPers.subPers>
+            </k:each parentPers>
+        </div>
+    </div>
+    </form>
+</div>

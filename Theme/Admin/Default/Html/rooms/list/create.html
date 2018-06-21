@@ -1,0 +1,40 @@
+<!-- ============================================================== -->
+<!-- Right sidebar -->
+<!-- ============================================================== -->
+<!-- .right-sidebar -->
+<div class="right-sidebar">
+    <div class="slimscrollright">
+        <div class="rpanel-title">
+            <strong>Create Room</strong>
+            <span><i class="ti-close right-side-toggle"></i></span> 
+        </div>
+        <div class="r-panel-body">
+            <form method="post" action="{k:var url_user_create}" class="formSubmit">
+                <div class="form-group">
+                    <label>Name Room <span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="text" name="name" class="form-control" placeholder="Name Room" form-valid="str:3:200" />
+                        <small class="help-block hidden">3 - 200 characters</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Max Students <span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="text" name="max_student" class="form-control" placeholder="Max Students" form-valid="int:1:999" />
+                        <small class="help-block hidden">Max students min 1 and max 999</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input type="hidden" name="token" value="{k:var name_create_token}" />
+                    <input type="hidden" name="commit" value="{k:var name_create_commit}" />
+                    <button type="submit" class="btn btn-flat btn-outline btn-info"><i class="fa fa-check"></i> Save</button>
+                    <button type="button" class="right-side-toggle btn-flat btn-outline btn btn-danger">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Right sidebar -->
+<!-- ============================================================== -->

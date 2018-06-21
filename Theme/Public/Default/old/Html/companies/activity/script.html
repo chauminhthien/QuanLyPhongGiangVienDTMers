@@ -1,0 +1,189 @@
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $(document).on('click', '#sbC2C', function(){
+            var phone = $(this).text();
+            if (!/^0/gi.test(phone)) phone = '0' + phone;
+
+            CRM.CONTACTS.click2call(phone, function(data){
+                //console.log(data);
+            });
+            //socket.emit('contacts-click2call', phone);
+        });
+
+        $(document).on('click', '.btnFiles', function(){
+            $(this).parent().find('input[type=file]').click();
+        });
+
+        $(document).on('change', '.pannelFiles', function(){
+            var files = this.files, length = files.length;
+            if (length){
+                var type = $(this).attr('data-type');
+                $('#' + type + 'Attach, #' + type + 'NoneAttach').html('');
+                
+                var rule = $(this).attr('form-valid'), rules = [], max = 5, size = 20000,
+                    ext = [
+                        'png', 'gif', 'jpg', 'bmp', 'doc', 'docx', 'xls', 
+                        'xlsx', 'ppt', 'pptx', 'zip', 'rar', 'csv', 'txt'
+                    ];
+                if (!!rule) rules = rule.split(':');
+                if (!!rules[2] && NaN !== +rules[2]) max = +rules[2];
+                if (!!rules[3]) ext = rules[3].toLowerCase().split(',');
+                if (!!rules[5] && NaN !== +rules[5]) size = +rules[5];
+
+                for(let i = 0; i < length; ++i){
+                    let fileName = files[i].name.split('.'),
+                        fileExt = fileName[fileName.length - 1],
+                        err = (i >= max || ext.indexOf(fileExt.toLowerCase()) < 0 || files[i].size > size);
+                    let attach = $(this).parents('.sl-right').find('#id').val() ? $(this).parents('.sl-right').find('#id').val() :'' ;
+                    $('#' + type + 'Attach' + attach).append(
+                        $('#templateCompaniesAttach').html()
+                        .replace(/\{\{NAME\}\}/gmi, files[i].name)
+                        .replace(/\{\{TYPE\}\}/gmi, 'note')
+                        .replace(/\{\{CLASS\}\}/gmi, err ? 'fileInvalid' : 'fileValid')
+                    );
+
+                    if (err){
+                        $('#' + type + 'NoneAttach'+attach).append(
+                            $('#templateCompaniesNoneAttach').html()
+                            .replace(/\{\{NAME\}\}/gmi, files[i].name)
+                        );
+                    }
+                }
+            }
+        });
+
+        $(document).on('click', '#showCC', function(){
+            $('.hideCC').removeClass('hidden');
+            $(this).addClass('hidden');
+            return false;
+        });
+
+        $(document).on('click', '#showBCC', function(){
+            $('.hideBCC').removeClass('hidden');
+            $(this).addClass('hidden');
+            return false;
+        });
+
+        $(document).on('click', '.removeAttach', function(){
+            var type = $(this).attr('data-type');
+            
+            if ($(this).parent().hasClass('fileValid')){
+                $('#' + type + 'NoneAttach').append(
+                    $('#templateContactsNoteNoneAttach').html()
+                    .replace(/\{\{NAME\}\}/gmi, $(this).attr('data-name'))
+                );
+            }
+            
+            $(this).parent().remove();
+            return false;
+        });
+        
+        $(document).on('click', '.editContact',function(){
+            $('#contact_name, .editContact').addClass('hidden');
+            $('.cancelContact, .showContact').removeClass('hidden'); 
+        });
+
+        $(document).on('click', '.cancelContact',function(){
+            $('#contact_name, .editContact').removeClass('hidden');
+            $('.cancelContact, .showContact').addClass('hidden'); 
+        });
+
+        $(document).on('click', '.editDeal',function(){
+            $('#deal_name, .editDeal').addClass('hidden');
+            $('.cancelDeal, .showDeal').removeClass('hidden'); 
+        });
+
+        $(document).on('click', '.cancelDeal',function(){
+            $('#deal_name, .editDeal').removeClass('hidden');
+            $('.cancelDeal, .showDeal').addClass('hidden'); 
+        });
+        var today = new Date(),
+            dayToday = ('0' + today.getDate()).slice(-2),
+            monthToday = ('0' + (today.getMonth() + 1)).slice(-2),
+            dateToday = dayToday + '/' + monthToday + '/' + today.getFullYear();
+
+        $('.isPicker').val(dateToday).datepicker({
+            format : 'dd/mm/yyyy',
+            startDate : dateToday,
+            linked: true,
+            todayHighlight : true,
+            autoclose : true,
+		});
+        $('.isPicker1').datepicker({
+            format : 'dd/mm/yyyy',
+            startDate : dateToday,
+            linked: true,
+            todayHighlight : true,
+            autoclose : true,
+		});
+
+
+        $(".select2").select2();
+        $('.isTime').clockpicker({
+            align: 'right',
+            donetext: 'Done'
+            
+        });
+
+        $(document).on('click', '.editForm', function(){
+            $('.leftEditForm').find('input[type=text]').removeClass('hidden');
+            $('.leftEditForm').find('p').addClass('hidden');
+
+            $('.leftEditForm').find('.fullNameEdit').removeClass('hidden');
+            $('.leftEditForm').find('.fullName').addClass('hidden');
+
+            $(this).parent().find('button').removeClass('hidden');
+            $(this).addClass('hidden');
+        });
+
+        $(document).on('click', '.cancelForm',function(){
+            $('.leftEditForm')[0].reset();
+            $('.leftEditForm').find('input[type=text], span, .fullNameEdit, button').addClass('hidden');
+            $('.leftEditForm').find('p, .fullName, .editForm').removeClass('hidden');
+
+        });
+
+       $(document).on('click', '.editTask',function(){
+
+            $(this).parents('.sl-right').find('input[type=text]:disabled, select, textarea').prop('disabled', false);
+            $(this).parents('.sl-right').find('button, .editTime, .attachFile, .editNote').removeClass('hidden'); 
+            $(this).parents('.sl-right').find('.showTime, .textNote').addClass('hidden');
+
+
+            $(this).addClass('hidden');
+        });
+
+        $(document).on('click', '.cancelTask',function(){
+            $(this).parents('.senbacAjaxForm')[0].reset();
+            $(this).parents('.sl-right').find('input, select, textarea').prop('disabled', true);
+            $(this).parents('.sl-right').find('button, .editTime, .attachFile, .editNote').addClass('hidden'); 
+            $(this).parents('.sl-right').find('.taskDone, .showTime, .editTask, .textNote').removeClass('hidden'); 
+
+        });
+
+        $(document).on('click', '.updateDoneTask', function(){
+        var $sefl = this, DoDelete = function(){
+        $($sefl).find('input[type=hidden]').prop('disabled', false);
+        Validate.action($sefl, {
+            ajaxSuccess : ajaxSuccess,
+            ajaxError : ajaxError
+        });
+        };
+
+        Alert.popup({
+        title: "Update",
+        classes: "warning",
+        message: "Are you sure done task?",
+        btn : [
+            {label: 'Cancel', color: 'orange', isFocus: true, fn: Alert.close},
+            {label: 'Done', color: 'orange', fn: DoDelete}
+        ]
+        });
+
+        return false;
+        }); 
+
+    });
+</script>

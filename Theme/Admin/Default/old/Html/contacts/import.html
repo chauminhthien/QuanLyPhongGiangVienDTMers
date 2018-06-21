@@ -1,0 +1,42 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <!-- /row -->
+ 
+        <div class="row white-box">
+
+            <form method="POST" action="{k:var url_import}" class="importClass">
+                <button type="button" class="btn btn-success btn-sm btnFiles">
+                    Select file (.xls, .xlsx, .csv)
+                </button>
+                <input type="file" name="import" form-valid="file:1:1:xls,xlsx,csv:1:2000000" class="hidden importFile" /> 
+            
+                <input type="hidden" name="token" value="{k:var contacts_import_token}" />
+                <input type="hidden" name="commit" value="{k:var contacts_import_commit}" />
+            </form>
+            <div class="col-md-12 contentExcel">
+
+
+            
+            </div>
+        </div>
+           
+
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>
+
+<script id="templateImportExcel" type="text/x-handlebars-template">
+    <div class="form-group inviteItem col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                {{TITLE}}
+            </div>
+            <div class="col-md-8">
+                {{BODY}}
+            </div>
+        </div>
+           
+    </div>
+</script>

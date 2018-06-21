@@ -1,0 +1,38 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav slimscrollsidebar">
+        <div class="sidebar-head">
+        <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Danh Mục</span></h3> </div>
+        <ul class="nav" id="side-menu">
+            <li class="user-pro {k:var active_profile}">
+                <a href="#" class="waves-effect {k:var active_profile}">
+                    <img src="<k:if:var myaccount.avatar>{k:var url_project}/{k:var myaccount.avatar}<k:else:var myaccount.avatar>{k:var prefix_url_theme}/Images/user.jpg</k:if:var myaccount.avatar>" alt="user-img" class="img-circle autoImage-{k:var myaccount.id}">
+                    <span class="hide-menu"> {k:var myaccount.fullname}<span class="fa arrow"></span></span>
+                </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false" >
+                    <li>
+                        <a class="{k:var active_profile}" href="{k:var url_profile}"><i class="ti-user"></i> <span class="hide-menu">My Profile</span></a>
+                    </li>
+                    <li>
+                        <a href="{k:var url_logout}"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="">
+                <a href="{k:var url_home}" class="{k:var active_home} ">
+                    <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> 
+                    <span class="hide-menu"> Trang chủ</span>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="{k:var url_res_rooms}" class="{k:var active_rooms} ">
+                    <i class="fa fa-bank fa-fw" data-icon="v"></i> 
+                    <span class="hide-menu"> Đăng ký phòng</span>
+                </a>
+            </li>
+           
+
+        </ul>
+    </div>
+</div>

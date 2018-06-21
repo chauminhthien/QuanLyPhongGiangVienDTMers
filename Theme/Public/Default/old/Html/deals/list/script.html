@@ -1,0 +1,136 @@
+<script src="{k:var url_project}/Theme/Public/Default/Js/jqueryui.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        // Switchery
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+        // For select 2
+        $(".select2").select2();
+        //Bootstrap-TouchSpin
+        $(".vertical-spin").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'ti-plus',
+            verticaldownclass: 'ti-minus'
+        });
+        var vspinTrue = $(".vertical-spin").TouchSpin({
+            verticalbuttons: true
+        });
+        if (vspinTrue) {
+            $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
+        }
+        $("input[name='tch1']").TouchSpin({
+            min: 0,
+            max: 100,
+            step: 0.1,
+            decimals: 2,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: '%'
+        });
+        $("input[name='tch2']").TouchSpin({
+            min: -1000000000,
+            max: 1000000000,
+            stepinterval: 50,
+            maxboostedstep: 10000000,
+            prefix: '$'
+        });
+        $("input[name='tch3']").TouchSpin();
+        $("input[name='tch3_22']").TouchSpin({
+            initval: 40
+        });
+        $("input[name='tch5']").TouchSpin({
+            prefix: "pre",
+            postfix: "post"
+        });
+        // For multiselect
+        $('#pre-selected-options').multiSelect();
+        $('#optgroup').multiSelect({
+            selectableOptgroup: true
+        });
+        $('#public-methods').multiSelect();
+        $('#select-all').click(function() {
+            $('#public-methods').multiSelect('select_all');
+            return false;
+        });
+        $('#deselect-all').click(function() {
+            $('#public-methods').multiSelect('deselect_all');
+            return false;
+        });
+        $('#refresh').on('click', function() {
+            $('#public-methods').multiSelect('refresh');
+            return false;
+        });
+        $('#add-option').on('click', function() {
+            $('#public-methods').multiSelect('addOption', {
+                value: 42,
+                text: 'test 42',
+                index: 0
+            });
+            return false;
+        });
+
+        jQuery('.mydatepicker').datepicker();
+        
+        jQuery('#single-input').clockpicker({
+            placement: 'top',
+            align: 'left',
+            autoclose: true,
+            'default': 'now'
+        });
+
+        
+        var idProcessPrev   = null;
+        var item            = null;
+        $( ".board-column-list" ).sortable({
+            connectWith: '.board-column-list',
+            beforeStop: function( event, ui ) {
+                idProcessPrev       = $(this).attr('data-id');
+                item                = ui.item;
+                var idDeal          = item.attr('data-id');
+                var urlAjax         = item.attr('data-ajax');
+                var idProcessNext   = $('div[data-id=' + idDeal + ']').parent().attr('data-id');
+
+                if( idProcessPrev != idProcessNext){
+                    $('#modal-' + idProcessNext).parent().removeClass('hidden')
+                    .find('#modal-' + idProcessNext).addClass('in').css('display', 'block');
+
+                    $('#'+ idProcessNext).val(idDeal);
+                } 
+                    
+                
+            },
+        });
+
+         $(document).on('click', '.modal-close', function(){
+            if(!!idProcessPrev && !!item){
+                var id = $(this).attr('data-id');
+                $('#modal-' + id).parent().addClass('hidden')
+                .find('#modal-' + id).removeClass('in').css('display', 'none');
+               
+                $('#process-' + idProcessPrev).append(item);
+            }
+        });
+
+        $('.isPicker').datepicker({
+            format : 'dd/mm/yyyy',
+            linked: true,
+            todayHighlight : true,
+            autoclose : true,
+		});
+
+        $('.isTime').clockpicker({
+            align: 'right',
+            donetext: 'Done'
+        });
+
+        
+    });
+    
+
+</script>

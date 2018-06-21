@@ -1,0 +1,99 @@
+<div class="col-md-8 col-xs-12">
+        <div class="">
+            <ul class="nav nav-tabs tabs customtab white-box" style="padding-bottom: 0; margin-bottom: 0;">
+                <li class="active tab">
+                    <a href="#tabactivity" data-toggle="tab"> 
+                        <span class="visible-xs"><i class="fa fa-home"></i></span> 
+                        <span class="hidden-xs">Activity</span> 
+                    </a>
+                </li>
+                <li class="tab">
+                    <a href="#tabnote" data-toggle="tab"> 
+                        <span class="visible-xs"><i class="fa fa-user"></i></span> 
+                        <span class="hidden-xs">Note</span> 
+                    </a>
+                </li>
+                <!-- <li class="tab">
+                    <a href="#tabsms" data-toggle="tab" aria-expanded="true"> 
+                        <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
+                        <span class="hidden-xs">SMS</span> 
+                    </a>
+                </li>
+                <li class="tab">
+                    <a href="#tabemail" data-toggle="tab" aria-expanded="false"> 
+                        <span class="visible-xs"><i class="fa fa-cog"></i></span> 
+                        <span class="hidden-xs">Email</span> 
+                    </a>
+                </li> -->
+                <li class="tab">
+                    <a href="#tabtask" data-toggle="tab" aria-expanded="false"> 
+                        <span class="visible-xs"><i class="fa fa-cog"></i></span> 
+                        <span class="hidden-xs">Task</span> 
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content" style="margin-top: 0;">
+                <div class="tab-pane active" id="tabactivity">
+                    <div class="steamline">
+                        <k:each activities>
+                            {k:each:if activities:isActivity}
+                            {k:each:if activities:isCreate}<k:inc acti_create>{/k:each:if activities:isCreate}
+                            {k:each:if activities:isAddOwner}<k:inc acti_addowner>{/k:each:if activities:isAddOwner}
+                            {k:each:if activities:isAddContact}<k:inc acti_addcontact>{/k:each:if activities:isAddContact}
+                            {k:each:if activities:isAddCompany}<k:inc acti_addcompany>{/k:each:if activities:isAddCompany} 
+                            {k:each:if activities:isAddContactCompany}<k:inc acti_addcontactcompany>{/k:each:if activities:isAddContactCompany}  
+                            {k:each:if activities:isRemoveCompany}<k:inc acti_removecompany>{/k:each:if activities:isRemoveCompany} 
+                            {k:each:if activities:isRemoveContact}<k:inc acti_removecontact>{/k:each:if activities:isRemoveContact}  
+                                    
+                            {k:each:if activities:isChangeDeals}<k:inc acti_changedealprocess>{/k:each:if activities:isChangeDeals}        
+                            {k:each:if activities:isNote}<k:inc acti_note>{/k:each:if activities:isNote}
+                            {k:each:if activities:isTask}<k:inc acti_task>{/k:each:if activities:isTask}
+                            {k:each:if activities:isEmail}<k:inc acti_email>{/k:each:if activities:isEmail}
+                            {k:each:if activities:isUpdate}<k:inc acti_update>{/k:each:if activities:isUpdate}
+                            {/k:each:if activities:isActivity}
+                        </k:each activities>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabnote">
+                    <k:inc acti_form_note>
+                    <div class="steamline">
+                        <k:each activities>
+                            {k:each:if activities:isNote}<k:inc acti_note>{/k:each:if activities:isNote}
+                        </k:each activities>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabsms">
+                    <k:inc acti_form_sms>
+                    <div class="steamline">
+                        <k:each activities>
+                            {k:each:if activities:isSMS}<k:inc acti_sms>{/k:each:if activities:isSMS}
+                        </k:each activities>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabemail">
+                    <k:inc acti_form_email>
+                    <div class="steamline">
+                        <k:each activities>
+                            {k:each:if activities:isEmail}<k:inc acti_email>{/k:each:if activities:isEmail}
+                        </k:each activities>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabtask">
+                    <k:inc acti_form_task>
+                    <div class="steamline">
+                        <k:each activities>
+                            {k:each:if activities:isTask}<k:inc acti_task>{/k:each:if activities:isTask}
+                        </k:each activities>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-handlebars-template" id="templateDealsAttach">
+        <span class="btn-rounded btn btn-default btn-outline {{CLASS}}">
+            <a class="ti-close text-danger m-r-5 removeAttach" data-type="{{TYPE}}" data-name="{{NAME}}"></a> {{NAME}}
+        </span>
+    </script>
+    <script type="text/x-handlebars-template" id="templateDealsNoneAttach">
+        <input type="hidden" name="none_attach[]" value="{{NAME}}" />
+    </script>

@@ -1,0 +1,74 @@
+<!-- ============================================================== -->
+<!-- Right sidebar -->
+<!-- ============================================================== -->
+<!-- .right-sidebar -->
+<div class="right-sidebar">
+    <div class="slimscrollright">
+        <div class="rpanel-title">
+            <strong>Create Member</strong>
+            <span><i class="ti-close right-side-toggle"></i></span> 
+        </div>
+        <div class="r-panel-body">
+            <form method="post" action="{k:var url_member_create}" class="formSubmit">
+                <div class="form-group">
+                    <label>Email <span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="text" name="email" class="form-control" placeholder="Email" form-valid="email:7:100" />
+                        <small class="help-block hidden">Email invalid or 7 - 100 characters</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password <span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="password" name="password" class="form-control" placeholder="Password" form-valid="str:6:32" />
+                        <small class="help-block hidden">6 - 32 characters</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Fullname <span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="text" name="fullname" class="form-control" placeholder="Fullname" form-valid="str:3:200" />
+                        <small class="help-block hidden">3 - 200 characters</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone <span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="text" name="phone" class="form-control" placeholder="Phone" form-valid="str:7:15" />
+                        <small class="help-block hidden">Phone invalid</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender <span class="text-important">*</span></label>
+                    <div class="">
+                        <select class="form-control" name="gender" form-valid="int:0:1">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                        <small class="help-block hidden">Gender Invalid</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Birthday <span class="text-important">*</span></label>
+                    <div class="">
+                        <input name="birthday" form-valid="str:10:12" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                        <small class="help-block hidden">Birthday Invalid</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input type="hidden" name="token" value="{k:var name_delete_member_token}" />
+                    <input type="hidden" name="commit" value="{k:var name_delete_member_commit}" />
+                    <button type="submit" class="btn btn-flat btn-outline btn-info"><i class="fa fa-check"></i> Save</button>
+                    <button type="button" class="right-side-toggle btn-flat btn-outline btn btn-danger">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Right sidebar -->
+<!-- ============================================================== -->

@@ -1,0 +1,37 @@
+<k:each listAccount>
+    <tr id="accountItem{k:each listAccount.id}" action="{k:var url_current}" method="post">
+        <td>
+            <a href="{k:each listAccount.url_edit}">
+                <img src="{k:each:if listAccount:image}{k:var url_project}/{k:each listAccount.image}{k:each:else listAccount:image}{k:var url_project}/Theme/Public/Default/Images/user.jpg{/k:each:if listAccount:image}" alt="user" class="img-circle" style="width: 30px; height: 30px;" /> 
+                {k:each listAccount.username}
+            </a>
+        </td>
+        <td>
+            {k:each listAccount.email}
+        </td>
+        <td>
+            {k:each listAccount.code}
+        </td>
+        <td>
+            {k:each listAccount.phone}
+        </td>
+        <td action="{k:var url_current}" method="post">
+            {k:each:if listAccount:admin}{k:each:else listAccount:admin}
+            <input name="status" type="checkbox" {k:each listAccount.checked} class="js-switch account_change" data-color="#53e69d" data-size="small" />
+            <input type="hidden" name="commit" value="{k:var name_change_account_commit}" />
+            <input type="hidden" name="token" value="{k:var name_change_account_token}" />
+            <input type="hidden" name="id" value="{k:each listAccount.id}" />
+            {/k:each:if listAccount:admin}
+        </td>
+        <td class="text-center">
+            {k:each:if listAccount:admin}{k:each:else listAccount:admin}
+            <button action="{k:var url_current}" method="post" type="button" class="deleteItemList btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                <input type="hidden" disabled name="commit" value="{k:var name_delete_account_commit}" />
+                <input type="hidden" disabled name="token" value="{k:var name_delete_account_token}" />
+                <input type="hidden" name="id" value="{k:each listAccount.id}" />
+                <i class="ti-close" aria-hidden="true"></i>
+            </button>
+            {/k:each:if listAccount:admin}
+        </td>
+    </tr>
+</k:each listAccount>

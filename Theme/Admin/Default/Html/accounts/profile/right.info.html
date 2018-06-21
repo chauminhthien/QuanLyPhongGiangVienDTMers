@@ -1,0 +1,41 @@
+<div class="tab-pane active" id="info">
+    <form action="{k:var url_current}" method="post" class="formSubmit">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <input readonly form-valid="email:7:100" value="{k:var myaccount.email}" name="email" type="email" id="email" class="form-control" placeholder="{k:var myaccount.email}">
+                        <span class="help-block hidden"> Email Invalid </span> 
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="fullname" class="control-label">Fullname</label>
+                        <input form-valid="str:3:200" value="{k:var myaccount.fullname}" name="fullname" id="fullname" class="form-control" placeholder="{k:var myaccount.fullname}">
+                        <span class="help-block hidden"> Fullname Invalid </span> 
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="phone" class="control-label">Gender</label>
+                      <select form-valid="int:0:1" name="gender" class="form-control">
+                        <option {k:var myaccount.gender_1} value="1">Male</option>
+                        <option {k:var myaccount.gender_0} value="0">Female</option>
+                      </select>
+                      <span class="help-block hidden"> Gender invalid</span> 
+                    </div>
+                </div>
+
+                <!--/span-->
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" name="token" value="{k:var accounts_change_info_token}" />
+            <input type="hidden" name="commit" value="{k:var accounts_change_info_commit}" />
+            <button type="submit" class="btn btn-flat btn-outline btn-info fcbtn btn-1b"> Update</button>
+        </div>
+    </form>
+  </div>

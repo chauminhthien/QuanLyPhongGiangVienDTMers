@@ -1,0 +1,75 @@
+<div class="white-box">
+    <form method="post" action="{k:var url_task}" class="senbacAjaxForm">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" name="title" class="form-control" placeholder="Enter your task" form-valid="str:1:200" />
+            </div>
+        </div>
+        <hr />
+        <textarea class="form-control" name="content" placeholder="Note..." form-valid="str:0:500"></textarea>
+        <div style="margin-top: 10px;">
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <p>Due date</p>
+                <div class="col-md-8">
+                    <input type="text" readonly name="due_date" class="form-control isPicker" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" readonly name="due_time" class=" form-control isTime" value="08:00" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>Email reminder</p>
+                <div class="col-md-8">
+                    <input type="text" readonly name="reminder_date" class="form-control isPicker" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" readonly name="reminder_time" class=" form-control isTime" value="08:00" />
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <p>Type</p>
+                <select class="form-control" name="type">
+                    <option value="call">Call</option>
+                    <option value="email">Email</option>
+                    <option value="to-do" selected>To-do</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <p>Assigned to</p>
+                <select class="form-control select2" name="owner_id">
+                    <option value="0">No Owner</option>
+                    <k:each listaccounts>
+                        <option value="{k:each listaccounts.id}" {k:each listaccounts.selected}>{k:each listaccounts.firstname} {k:each listaccounts.lastname}</option>
+                    </k:each listaccounts>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <p>Queue</p>
+                <select class="form-control select2" name="queue_id">
+                    <option value="0">None</option>
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                    
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <input type="hidden" name="token" value="{k:var contacts_task_token}" />
+                <input type="hidden" name="commit" value="{k:var contacts_task_commit}" />
+                <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-pencil"></i> Add task</button>
+            </div>
+        </div>
+    </form>
+</div>

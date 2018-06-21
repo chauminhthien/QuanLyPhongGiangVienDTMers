@@ -1,0 +1,45 @@
+<k:each listPermission>
+    <tr action="{k:var url_current}" method="post" class="advance-table-row" id="permission-{k:each listPermission.id}">
+                            
+        <td>
+            <input value="{k:each listPermission.name}" name="name" class="form-control" placeholder="Name" form-valid="str:3:200" />
+        </td>
+        <td>
+            <input value="{k:each listPermission.key}" name="key" class="form-control" placeholder="Key" form-valid="str:3:200" />   
+        </td>
+        <td>
+            <input value="{k:each listPermission.link}" type="text" name="link" class="form-control" placeholder="Link" form-valid="str:1:200" /> 
+        </td>
+        <td>
+            <input value="{k:each listPermission.ordering}" type="text" name="ordering" class="form-control text-center" placeholder="Ordering" form-valid="int:0" />  
+        </td>
+        <td>
+            <select class="form-control" name="parent" form-valid="int:0">
+                <option value="0">-- Parent --</option>
+                <k:each parentPers>
+                    <option {k:each listPermission.parent_{k:each parentPers.id}} value="{k:each parentPers.id}">{k:each parentPers.name}</option>
+                    <k:each parentPers.subPers>
+                        <option {k:each listPermission.parent_{k:each parentPers.subPers.id}} value="{k:each parentPers.subPers.id}">--- {k:each parentPers.subPers.name}</option>
+                    </k:each parentPers.subPers>
+                </k:each parentPers>
+            </select>
+        </td>
+        <td>
+            <button class="btn-save btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Save">
+                <i class="ti-save" aria-hidden="true"></i>
+            </button>
+
+            <button action="{k:var url_current}" method="post" type="button" class="deleteItemList btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                <i class="ti-close" aria-hidden="true"></i>
+                <input type="hidden" name="id" value="{k:each listPermission.id}">
+                <input type="hidden" name="token" disabled value="{k:var name_delete_token}">
+                <input type="hidden" name="commit" disabled value="{k:var name_delete_commit}">
+            </button>
+        </td>
+        <input type="hidden" name="token" value="{k:var name_change_token}">
+        <input type="hidden" name="commit" value="{k:var name_change_commit}">
+    </tr>
+    <tr>
+        <td colspan="5" id="table-{k:each listPermission.id}" class="sm-pd"></td>
+    </tr>
+</k:each listPermission>

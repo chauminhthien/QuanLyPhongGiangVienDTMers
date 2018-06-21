@@ -1,0 +1,48 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <!-- /row -->
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="white-box m-t-30">
+                    <div class="progress-step p-0">
+                        <ul class="btn-group btn-group-justified p-0">
+                            <li class="btn-group" role="group">
+                                <a class="bg bg-info">
+                                    <i>Select file</i>
+                                </a>
+                            </li>
+                            <li class="btn-group" role="group">
+                                <a class="bg bg-default">
+                                    <i>Custom field</i>
+                                </a>
+                            </li>
+                            <li class="btn-group" role="group">
+                                <a class="bg bg-default">
+                                    <i>Import</i>
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="selectFile" action="{k:var url_current}" method="post">
+                        <button type="button" class="btn btn-success btnSelectFile">Select file</button>
+                        <input type="file" name="import" class="hidden autoUpload" form-upload="file:1:1:xls,xlsx,csv" />
+                        <input type="hidden" name="token" value="{k:var import_select_token}" />
+                        <input type="hidden" name="commit" value="{k:var import_select_commit}" />
+                        <span class="fileName"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

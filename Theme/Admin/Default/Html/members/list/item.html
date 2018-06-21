@@ -1,0 +1,49 @@
+<k:each listMembers>
+    <tr action="{k:var url_member_change}" method="post" id="user-{k:each listMembers.id}">
+                            
+        <td width="60">
+            <img src="{k:each:if listMembers:avatar}{k:var url_project}/{k:each listMembers.avatar}{k:each:else listMembers:avatar}{k:var prefix_url_theme}/Images/user.jpg{/k:each:if listMembers:avatar}" class="img-circle" width="30" />
+        </td>
+        <td>
+            <k:if member_view>
+                <a href="{k:each listMembers.url_view}">{k:each listMembers.fullname}</a>
+            <k:else member_view>
+            </k:if member_view>
+            
+            
+        </td>
+        <td>{k:each listMembers.email}</td>
+        <td>{k:each listMembers.phone}</td>
+        <td>
+            {k:each listMembers.time}
+        </td>
+        <td class="text-center">
+            <k:if member_change>
+                <input name="status" data-id="{k:each listMembers.id}" type="checkbox" {k:each listMembers.checked} class="js-switch onChange" data-color="#53e69d" data-size="small" />
+            <k:else member_change>
+                <input disabled name="status" data-id="{k:each listMembers.id}" type="checkbox" {k:each listMembers.checked} class="js-switch onChange" data-color="#53e69d" data-size="small" />
+            </k:if member_change>
+            
+        </td>
+        <td>
+            <k:if edit_member>
+                <a href="{k:each listMembers.url_view}" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Edit Item">
+                <i style="font-size: 17px" class="fa fa-edit" aria-hidden="true"></i>
+            </a>
+            </k:if edit_member>
+            
+            <k:if member_del>
+                <button action="{k:var url_member_delete}" method="post" type="button" class="deleteItemList btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                <i class="ti-close" aria-hidden="true"></i>
+                <input type="hidden" name="id" value="{k:each listMembers.id}">
+                <input type="hidden" name="token" value="{k:var name_delete_member_token}">
+                <input type="hidden" name="commit" value="{k:var name_delete_member_commit}">
+            </button>
+            </k:if member_del>
+            
+        </td>
+        <input type="hidden" name="id" value="{k:each listMembers.id}">
+        <input type="hidden" name="token" value="{k:var name_change_member_token}">
+        <input type="hidden" name="commit" value="{k:var name_change_member_commit}">
+    </tr>
+</k:each listMembers>

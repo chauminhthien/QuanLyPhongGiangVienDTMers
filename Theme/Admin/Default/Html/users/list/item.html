@@ -1,0 +1,54 @@
+<k:each listAccount>
+    <tr action="{k:var url_user_change}" method="post" id="user-{k:each listAccount.id}">
+                            
+        <td width="60">
+            <img src="{k:each:if listAccount:avatar}{k:var url_project}/{k:each listAccount.avatar}{k:each:else listAccount:avatar}{k:var prefix_url_theme}/Images/user.jpg{/k:each:if listAccount:avatar}" class="img-circle" width="30" />
+        </td>
+        <td>{k:each listAccount.fullname}</td>
+        <td>{k:each listAccount.email}</td>
+        <td>
+            <k:if userchange>
+                <select class="form-control onChange" name="type" data-id="{k:each listAccount.id}">
+                <option {k:each listAccount.type_1} value="1">Admin</option>
+                <option {k:each listAccount.type_0} value="0">Sub Admin</option>
+            </select>
+            <k:else userchange>
+                {k:each:if listAccount:type_1}
+                    <span class="label label-rouded label-success">Admin</span>
+                {/k:each:if listAccount:type_1}
+                {k:each:if listAccount:type_0}
+                    <span class="label label-rouded label-info">Sub Admin</span>
+                {/k:each:if listAccount:type_0}
+            </k:if userchange>
+            
+            
+        </td>
+        <td class="text-center">  
+            <k:if userchange>
+                <input  name="status" data-id="{k:each listAccount.id}" type="checkbox" {k:each listAccount.checked} class="js-switch onChange" data-color="#53e69d" data-size="small" />
+            <k:else userchange>
+                
+                <input disabled  name="status" data-id="{k:each listAccount.id}" type="checkbox" {k:each listAccount.checked} class="js-switch onChange" data-color="#53e69d" data-size="small" />
+            </k:if userchange>
+            
+        </td>
+        <td>
+            <k:if userpermissions>
+                <a href="{k:each listAccount.url_permissions}" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Permission">
+                    <i class="mdi mdi-account-edit" aria-hidden="true"></i>
+                </a>
+            </k:if userpermissions>
+            <k:if userdelete>
+                <button action="{k:var url_user_delete}" method="post" type="button" class="deleteItemList btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                    <i class="ti-close" aria-hidden="true"></i>
+                    <input type="hidden" name="id" value="{k:each listAccount.id}">
+                    <input type="hidden" name="token" value="{k:var name_delete_account_token}">
+                    <input type="hidden" name="commit" value="{k:var name_delete_account_commit}">
+                </button>
+            </k:if userdelete>
+        </td>
+        <input type="hidden" name="id" value="{k:each listAccount.id}">
+        <input type="hidden" name="token" value="{k:var name_change_account_token}">
+        <input type="hidden" name="commit" value="{k:var name_change_account_commit}">
+    </tr>
+</k:each listAccount>

@@ -1,0 +1,95 @@
+
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <!-- /row -->
+ 
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="white-box">
+                    
+                  <form method="post" action="{k:var url_edit}" class="senbacAjaxForm">
+                      
+                      <div class="user-btm-box" style="padding-top: 0;">
+                          <div class="table-responsive">
+                              <table class="table">
+                                  <tbody>
+                                      <tr class="fullNameEdit">
+                                          <td>
+                                              <strong>Full Name</strong>
+                                          </td>
+                                          <td>
+                                              <input placeholder="First name" type="text" name="firstname" id="firstname" form-valid="str:1:100" class="form-control" value="{k:var accounts.firstname}"/>
+                                              <span class="help-block hidden">Range exceed of 1 - 100 characters</span>
+                                          </td>
+                                          <td>
+                                              <input placeholder="Last name" type="text" name="lastname" id="lastname" form-valid="str:1:100" class="form-control" value="{k:var accounts.lastname}"/>
+                                              <span class="help-block hidden">Range exceed of 1 - 100 characters</span>
+                                        
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td><strong>Phone</strong></td>
+                                          <td colspan="2">
+                                              <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" form-valid="str:7:15" value="{k:var accounts.phone}"/>
+                                              <span class="help-block hidden">Range exceed of 7 - 15 characters</span>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td><strong>Email</strong></td>
+                                          <td colspan="2">
+                                              <input type="text" name="email" id="email" class="form-control" form-valid="email:7:100" placeholder="Email" value="{k:var accounts.email}"/>
+                                              <span class="help-block hidden">Email invalid or range exceed of 7 - 100 characters</span>
+                                          </td>
+                                      </tr>
+              
+                                      <tr>
+                                          <td><strong>Home Address</strong></td>
+                                          <td colspan="2">
+                                              <input type="text" name="home_address" id="home-address" class="form-control " form-valid="str:0:200" placeholder="Home address" value="{k:var accounts.home_address}"/>
+                                              <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                          </td>
+                                      </tr>
+              
+                                      <tr>
+                                          <td><strong>Company Address</strong></td>
+                                          <td colspan="2">
+                                              <input type="text" name="company_address" id="company-address" class="form-control" form-valid="str:0:200" placeholder="Company address" value="{k:var accounts.company_address}"/>
+                                              <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                          </td>
+                                      
+                                      </tr>
+                                  </tbody>
+                              </table>
+                              <hr>
+                              <div style="margin: 5px;text-align:center">
+                                  <input type="hidden" name="token" value="{k:var accounts_profile_token}" />
+                                  <input type="hidden" name="commit" value="{k:var accounts_profile_commit}" />
+                                  <button type="submit" class="btn btn-info btn-rounded">Save</button>
+
+                              </div>
+                              
+                      </div>
+                  </form>
+                  
+                </div>
+            
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,139 @@
+<div class="sl-item" style="margin: 30px 0 0 0;">
+        <div class="sl-left"> 
+            <img src="{k:each:if activities:created_avatar
+            }{k:each activities.created_avatar}{k:each:else activities:created_avatar
+            }{k:var url_project}/Theme/Public/Default/Images/user.jpg{/k:each:if activities:created_avatar
+            }" alt="user" class="img-circle"> 
+        </div>
+        <form action="{k:each activities.url_editTask}" method="POST" class="senbacAjaxForm">
+            <div class="sl-right" style="padding-left: 0;">
+                <div class="m-l-40">
+                    <div class="white-box" style="margin-bottom: 0;">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="#" class="text-info">{k:each activities.created_name}</a> 
+                                <span class="sl-date">{k:each activities.created_date}</span>
+                                <p>created a task for <strong>{k:var companies.name}</strong></p>                                
+                            </div>
+                            <div class="col-md-4">
+                                    <input type="hidden" name="token" value="{k:var companies_edit_task_token}" />
+                                    <input type="hidden" name="commit" value="{k:var companies_edit_task_commit}" />
+                                    <button type="button" class="pull-right btn btn-info editTask"><i class="fa fa-pencil"> Edit </i></button>
+                                    <button type="button" class="pull-right btn btn-warning cancelTask hidden"><i class="fa fa-ban"> Cancel </i></button>
+                                    <button class="pull-right btn btn-info saveTask hidden"><i class="fa fa-floppy-o "> Update </i></button>
+                                    
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                            <div method="POST" action="{k:each activities.url_editTask}" class="updateDoneTask">
+                                <input type="hidden" disabled name="token" value="{k:var companies_done_task_token}" />
+                                <input type="hidden" disabled name="commit" value="{k:var companies_done_task_commit}" />
+                                <input type="hidden" disabled name="id" value="{k:each activities.taskid}" />
+                                <div class="checkbox checkbox-success checkbox-circle">
+                                    {k:each:if activities:completed}
+                                        <input id="checkbox-10" type="checkbox" checked>
+                                    {k:each:else activities:completed}
+                                        <input id="checkbox-10" type="checkbox">
+                                    {/k:each:if activities:completed}
+                                    <label for="checkbox-10" style="width:100%"> <input type="text" disabled class="hiddenBorder" style="font-weight:bold;clear:both" name="title" value="{k:each activities.task_title}">
+                                    </label>
+                                </div>
+                            </div>
+                            
+                          
+ 
+                        </div>
+                        <hr/>
+                        {k:each:if activities:task_content}
+                            <div>
+                                <input type="text" disabled class="hiddenBorder" name="content" value="{k:each activities.task_content}">
+                            </div>
+                            <hr />
+                        {/k:each:if activities:task_content}
+                        <div class="row">
+                            <div class="col-md-6 showTime">
+                                <p>Due date</p>
+                                <em>{k:each activities.task_due_time}</em>
+                                
+                            </div>
+
+                            <div class="col-md-6 showTime">
+                                <p>Email reminder</p>
+                                <em>{k:each activities.task_reminder_time}</em>
+                            </div>
+                            <div class="col-md-6 editTime hidden">
+                                <p>Due date</p>
+                                <div class="col-md-8">
+                                    <input type="text" readonly name="due_date" class="form-control isPicker1" value="{k:each activities.task_due_time_date}"/>
+                                  </div>
+                                <div class="col-md-4">
+                                    <input type="text" readonly name="due_time" class=" form-control isTime" value="{k:each activities.task_due_time_time}" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 editTime hidden">
+                                <p>Email reminder</p>
+                                <div class="col-md-8">
+                                    <input type="text" readonly name="reminder_date" class="form-control isPicker1" value="{k:each activities.task_reminder_time_date}"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" readonly name="reminder_time" class=" form-control isTime" value="{k:each activities.task_reminder_time_time}"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-2 showTime">
+                                <p>Type</p>
+                                <em>{k:each activities.task_type}</em>
+                            </div>
+                            <div class="col-md-5 showTime">
+                                
+                                <p>Assigned to</p>
+                                <em>
+                                    {k:each:if activities:task_owner_name}
+                                        {k:each activities.task_owner_name}
+                                    {k:each:else activities:task_owner_name}   
+                                        No owner
+                                    {/k:each:if activities:task_owner_name}
+                                </em>
+                            </div>
+                            <div class="col-md-5 showTime">
+                                <p>Queue</p>
+                                <em></em>
+                            </div>
+
+                            <div class="col-md-4 hidden editTime">
+                                <p>Type</p>
+                                <select disabled class="form-control select2" style="font-style: italic;" name="type">
+                                    <option value="call" {k:var activity_{k:each activities.taskid}_call}>Call</option>
+                                    <option value="email" {k:var activity_{k:each activities.taskid}_email}>Email</option>
+                                    <option value="to-do" {k:var activity_{k:each activities.taskid}_todo}>To-do</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 hidden editTime">
+
+                                
+                                <p>Assigned to</p>
+                                <select disabled class="form-control select2" style="font-style: italic;" name="owner_id">
+                                    <option value="0">No Owner</option>
+                                    <k:each listaccounts>
+                                        <option value="{k:each listaccounts.id}" {k:var activity_{k:each activities.taskid}_{k:each listaccounts.id}}>{k:each listaccounts.firstname} {k:each listaccounts.lastname}</option>
+                                    </k:each listaccounts>
+                                </select>
+                            </div>
+                            <div class="col-md-4 hidden editTime">
+                                <p>Queue</p>
+                                <select class="form-control select2" name="queue_id">
+                                    <option value="0">None</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </form>
+    </div>

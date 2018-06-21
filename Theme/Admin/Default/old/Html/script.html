@@ -1,0 +1,39 @@
+<!-- jQuery -->
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{k:var url_project}/Theme/Public/Default/Js/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Menu Plugin JavaScript -->
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="{k:var url_project}/Theme/Public/Default/Js/jquery.slimscroll.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/Js/custom.min.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/Js/alert.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/Js/function.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/Js/validate.js"></script>
+<script src="{k:var url_project}/Theme/Public/Default/Js/senbac_interface.js"></script>
+<k:inc inc_script>
+<script type="text/javascript">
+
+    const myId = '{k:var myaccount.id}';
+
+    $(document).ready(function() {
+        Validate.submit('.senbacAjaxForm', {
+            beforeValid : beforeValid,
+            validError : validError,
+            ajaxError : ajaxError,
+            ajaxSuccess : ajaxSuccess
+        });
+
+    });
+</script>
+<!-- end - This is for export functionality only -->
+<!-- <script type="text/javascript" src="http://crm.senbac.com:2017/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="{k:var url_project}/NodeJS/crm.js"></script>
+<script type="text/javascript" src="{k:var url_project}/Theme/Public/Default/Js/senbac_listener.js"></script> -->
+<!--Style Switcher -->
+<script src="{k:var url_project}/Theme/Public/Default/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+<k:inc sub_script>
+<k:inc popup_inbound>

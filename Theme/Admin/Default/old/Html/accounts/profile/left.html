@@ -1,0 +1,58 @@
+<div class="col-md-4 col-xs-12">
+    <div class="white-box">
+        <div class="el-element-overlay">
+            <div class="el-card-item" style="padding-bottom: 0;">
+                <div class="el-card-avatar el-overlay-1" style="text-align: center;">
+                    <div style="width: 100px; height: 100px; margin: 0 auto; display: inline-block; position: relative;">
+                        <img style="width: 88px; height: 88px; display: inline-block;" class="img-circle contactsAvatar-{k:var myaccount.id}" src="<k:if:var myaccount.avatar>{k:var myaccount.avatar}<k:else:var myaccount.avatar>{k:var url_project}/Theme/Public/Default/Images/user.jpg</k:if:var myaccount.avatar>">
+                        <div class="el-overlay">
+                            <ul class="el-info">
+                                <li action="{k:var url_account_avatar}" method="post">
+                                    <a class="btn default btn-outline image-popup-vertical-fit btnSelectFile">
+                                        <i class="mdi mdi-cloud-upload"></i>
+                                    </a>
+                                    <input type="hidden" name="token" value="{k:var account_avatar_token}" />
+                                    <input type="hidden" name="commit" value="{k:var account_upload_avatar_commit}" />
+                                    <input type="file" name="avatar" form-upload="file:1:1:jpg,png:10:2000000" accept="image/jpeg,image/png" class="hidden autoUpload" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-btm-box" style="padding-top: 0;">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Name </strong>
+                            </td>
+                            <td class="leftFullName">
+                                <p id="leftName">{k:var myaccount.firstname} {k:var myaccount.lastname}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td><a href="#" id="left-email">{k:var myaccount.email}</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phone</strong></td>
+                            <td><a href="#" id="left-email">{k:var myaccount.phone}</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Address</strong></td>
+                            <td><a href="#" id="left-email">{k:var myaccount.home_address}</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Company Address</strong></td>
+                            <td><a href="#" id="left-email">{k:var myaccount.company_address}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<!-- .right-sidebar -->
+<div class="right-sidebar" style="display: block;">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+        <div class="slimscrollright" style="overflow: hidden;overflow-y: auto; width: auto; height: 100%;">
+            <div class="rpanel-title"> Create Deals 
+                <span><i class="ti-close right-side-toggle"></i></span> 
+            </div>
+            <div class="r-panel-body">
+                <form class="form-horizontal senbacAjaxForm" method="post" action="{k:var url_deals_create}">
+                    <div class="form-group">
+                        <label class="col-md-12" for="name">Name</label>
+                        <div class="col-md-12">
+                            <input id="name" name="name" form-valid="str:2:100" class="form-control"> 
+                            <span class="help-block hidden">Name invalid or range exceed of 7 - 100 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12" for="amount">Amount</label>
+                        <div class="col-md-12">
+                            <input id="amount" name="amount" form-valid="num:10" class="form-control"> 
+                            <span class="help-block hidden">Amount miximum 10</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_id" class="col-md-12">Company</label>
+                        <div class="col-md-12">
+                            <select id="company_id" name="company_id" form-valid="str:1" class="form-control select2">
+                                <option value="0">None Company</option>
+                                <k:each listCompanies>
+                                    <option value="{k:each listCompanies.id}">{k:each listCompanies.name}</option>
+                                </k:each listCompanies>
+                            </select>
+                            <span class="help-block hidden">Select Company</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="process_id" class="col-md-12">Deal Process</label>
+                        <div class="col-md-12">
+                            <select id="process_id" name="process_id" form-valid="str:1" class="form-control select2">
+                                <option value="0">None Deal Process</option>
+                                <k:each listDealsProcess>
+                                    <option value="{k:each listDealsProcess.id}">{k:each listDealsProcess.name}</option>
+                                </k:each listDealsProcess>
+                            </select>
+                            <span class="help-block hidden">Select Deal Process</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="owner_id"  class="col-md-12">Owner</label>
+                        <div class="col-md-12">
+                            <select id="owner_id" form-valid="str:1" class="form-control select2" name="owner_id">
+                                <option value="0">None Owner</option>
+                                <k:each listaccounts>
+                                    <option value="{k:each listaccounts.id}" {k:each listaccounts.selected}>{k:each listaccounts.firstname} {k:each listaccounts.lastname}</option>
+                                </k:each listaccounts>
+                            </select>
+                            <span class="help-block hidden">Select Owner</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_id" class="col-md-12">Contact</label>
+                        <div class="col-md-12">
+                            <select id="contact_id" form-valid="str:1" name="contact_id" class="form-control select2">
+                                <option value="0">None Contact</option>
+                                <k:each listContacts>
+                                    <option value="{k:each listContacts.id}" >{k:each listContacts.firstname} {k:each listContacts.lastname}</option>
+                                </k:each listContacts>
+                            </select>
+                            <span class="help-block hidden">Select Owner</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date" class="col-md-12">Close date</label>
+                        <div class="col-md-6">
+                            <div class="">
+                                <input readonly placeholder="mm/dd/yyyy" id="date" name="date" form-valid="str::10" class="form-control mydatepicker">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <input readonly class="form-control" name="time" id="single-input" form-valid="str::6" value="" placeholder="H:i">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12" style="text-align: center;">
+                            <input type="hidden" name="token" value="{k:var deals_create_token}" />
+                            <input type="hidden" name="commit" value="{k:var deals_create_commit}" />
+                            <input type="hidden" value="0" id="typesubmit" />
+                            <button type="submit" class="btn btn-info btn-rounded">Create Deals</button>
+                            <button class="btn btn-outline btn-rounded btn-warning right-side-toggle">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div>
+        <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+    </div>
+</div>

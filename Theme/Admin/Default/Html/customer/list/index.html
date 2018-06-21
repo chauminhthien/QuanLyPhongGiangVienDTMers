@@ -1,0 +1,82 @@
+<!-- row -->
+<div class="row">
+    
+    <div class="col-md-12">
+            <div class="white-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="right-side-toggle btn btn-success pull-right m-l-20">
+                            Create
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="scrollable">
+                    <div class="table-responsive">
+                        <table class="table table-hover contact-list">
+                            <thead>
+                                <tr>
+                                    <th>Fullname</th>
+                                    <th>Email</th>
+                                    <th>Code</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th width="10%" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="main-list">
+                                <k:inc item>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>           
+    </div>
+</div>
+<ul class="pagination pull-right">
+        <k:if:var paging_btn_prev>
+            <li>
+                <a class="paginate_button fitst" href="{k:var url_list}">
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+            </li>
+            <li>
+                <a class="paginate_button previous" href="{k:var paging_btn_prev}">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+            
+        </k:if:var paging_btn_prev>
+        <k:if dotted_left>
+            <li>
+              <span>&hellip;</span>
+            </li>
+        </k:if dotted_left>
+       
+        <k:each paging_button>
+            <li>
+              <a href="{k:each paging_button.url}" class="{k:each paging_button.cur_class}" aria-controls="myTable" data-dt-idx="{k:each paging_button.name}" tabindex="0">{k:each paging_button.name}</a>
+            </li>
+        </k:each paging_button>
+        
+        <k:if dotted_right>
+            <li>
+              <span>&hellip;</span>
+            </li>
+        </k:if dotted_right>
+        <k:if:var paging_btn_next>
+            <li>
+              <a class="paginate_button next" href="{k:var paging_btn_next}">
+                  <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+              
+            <li>
+              <a class="paginate_button last" href="{k:var paging_btn_last}">
+                  <i class="fa fa-angle-double-right"></i>
+              </a>
+            </li>
+        </k:if:var paging_btn_next>
+      </ul>
+<!-- /row -->
+<k:inc create>

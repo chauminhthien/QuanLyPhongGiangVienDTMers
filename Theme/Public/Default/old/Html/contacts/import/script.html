@@ -1,0 +1,55 @@
+<script>
+jQuery(document).ready(function() {
+    $(document).on('click', '.btnFiles', function(){
+        $(this).parent().find('input[type=file]').click();
+    });
+
+    $(document).on('change', '.importFile', function(){
+      var files = this.files, length = files.length;
+      if (length == 1){
+
+        var rule = $(this).attr('form-valid'), rules = [], size = 20000,
+          ext = [
+                'xls', 'xlsx', 'csv'
+          ];
+        if (!!rule) rules = rule.split(':');
+        if (!!rules[3]) ext = rules[3].toLowerCase().split(',');
+        if (!!rules[5] && NaN !== +rules[5]) size = +rules[5];
+
+        let fileName = files[0].name.split('.'),
+        fileExt = fileName[fileName.length - 1],
+        err = (ext.indexOf(fileExt.toLowerCase()) < 0 || files[0].size > size);
+
+        if(!err) {
+			var el = this;
+			Validate.action($(this).parent(), {
+                validError : senbac_error_validate,
+                attribute : 'form-upload',
+                ajaxError : senbac_ajax_error,
+                ajaxSuccess : senbac_ajax_success,
+                typeAction : function(selector, response){
+                    if (!!response.content){
+						$(document).find('contentExcel').html();
+						response.content.forEach(element => {
+							console.log(element);
+							$(document).find('.contentExcel').append(
+								$('#templateImportExcel').html().replace(
+									/\{\{TITLE\}\}/gmi, element.title   
+								).replace(
+									/\{\{BODY\}\}/gmi, element.body   
+								)
+							);
+						});
+                        
+                        $(el).val('');
+                    }
+                    //console.log('typeAction', response);
+                }
+            });      
+        }  
+      }
+	});
+
+});
+</script>
+

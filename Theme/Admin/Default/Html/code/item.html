@@ -1,0 +1,39 @@
+<k:each listCode>
+    <tr id="accountItem{k:each listCode.id}" action="{k:var url_current}" method="post">
+
+        <td>
+            {k:each listCode.code}
+        </td>
+        <td>
+            {k:each listCode.serial}
+        </td>
+        <td>
+            {k:each listCode.time}
+        </td>
+        <k:if:var myaccount.type>
+            <td>{k:each listCode.username}</td>
+        </k:if:var myaccount.type>
+
+        
+
+        <td>
+            {k:each:if listCode:used}
+                <span class="label label-danger">Used</span>
+            {k:each:else listCode:used}
+                <span class="label label-success">Unused</span>
+            {/k:each:if listCode:used}
+            
+        </td>
+
+        <td class="text-center">
+     
+        <button action="{k:var url_current}" method="post" type="button" class="deleteItemList btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+            <input type="hidden" disabled name="commit" value="{k:var name_delete_commit}" />
+            <input type="hidden" disabled name="token" value="{k:var name_delete_token}" />
+            <input type="hidden" name="id" value="{k:each listCode.id}" />
+            <i class="ti-close" aria-hidden="true"></i>
+        </button>
+      
+        </td>
+    </tr>
+</k:each listCode>

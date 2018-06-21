@@ -1,0 +1,83 @@
+<div class="row">
+  <form action="{k:var url_current}" method="post" class="no-bg-addon formSubmit">
+  <div class="col-md-12">
+      <div class="white-box p-10-20 box">
+          <div class="row" >
+              <div class="col-md-6 col-xs-6 col-sm-6">
+                  <a href="{k:var url_home}" class="btn btn-flat btn-outline btn-info">Back to home</a>
+              </div>
+              <div class="col-md-6 col-xs-6 col-sm-6 ">
+                  <div class="form-actions pull-right">
+                      <input type="hidden" name="token" value="{k:var setting_name_token}" />
+                      <input type="hidden" name="commit" value="{k:var setting_name_commit}" />
+                      <input type="hidden" name="id" value="{k:var setting.id}">
+                      <button type="submit" class="btn btn-flat btn-outline btn-info"> Update</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <div class="col-md-12">
+      <div class="white-box box box-info">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="hostname" class="col-sm-2 control-label">HostName</label>
+                <div class="col-sm-10">
+                    <input id="title" type="text" name="hostname" value="{k:var sendmail.server.hostname}" class="form-control input_name" form-valid="str:3:100" placeholder="Host Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">UserName</label>
+                <div class="col-sm-10">
+                    <input id="username" type="text" name="username" value="{k:var sendmail.server.username}" class="form-control input_name" form-valid="email:3:100" placeholder="Enter UserName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">PassWord</label>
+                <div class="col-sm-10">
+                    <input id="password" type="password" name="password" value="{k:var sendmail.server.password}" class="form-control input_name" form-valid="str:7:100" placeholder="Enter PassWord">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="port" class="col-sm-2 control-label">Port</label>
+                <div class="col-sm-10">
+                    <input id="port" type="text" name="port" value="{k:var sendmail.server.port}" class="form-control input_name" form-valid="int:1:9999" placeholder="Enter Port">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="secure" class="col-sm-2 control-label">Secure</label>
+                <div class="col-sm-10">
+                    <input id="secure" type="text" name="secure" value="{k:var sendmail.server.secure}" class="form-control input_name" form-valid="str:3:100" placeholder="Enter Link Secure">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="replyTo" class="col-sm-2 control-label">ReplyTo</label>
+                <div class="col-sm-10">
+                    <input id="replyTo" type="text" name="replyTo" value="{k:var sendmail.server.replyTo}" class="form-control input_name" form-valid="email:3:100" placeholder="Enter replyTo">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email From</label>
+                <div class="col-sm-10">
+                    <input id="email" type="text" name="email" value="{k:var sendmail.from.email}" class="form-control input_name" form-valid="email:3:100" placeholder="Enter email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name From</label>
+                <div class="col-sm-10">
+                    <input id="name" type="text" name="name" value="{k:var sendmail.from.name}" class="form-control input_name" form-valid="str:3:100" placeholder="Enter name">
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  </form>
+</div>

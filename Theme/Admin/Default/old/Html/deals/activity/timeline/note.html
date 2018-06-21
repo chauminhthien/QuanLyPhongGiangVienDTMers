@@ -1,0 +1,78 @@
+<div class="sl-item" style="margin: 30px 0 0 0;">
+        <div class="sl-left"> 
+            <img src="{k:each:if activities:created_avatar
+            }{k:each activities.created_avatar}{k:each:else activities:created_avatar
+            }{k:var url_project}/Theme/Public/Default/Images/user.jpg{/k:each:if activities:created_avatar
+            }" alt="user" class="img-circle"> 
+        </div>
+        <form action="{k:each activities.url_editNote}" method="POST" class="senbacAjaxForm">
+            <div class="sl-right" style="padding-left: 0;">
+                <div class="m-l-40">
+                    <div class="white-box" style="margin-bottom: 0;">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="#" class="text-info">{k:each activities.created_name}</a> 
+                                <span class="sl-date">{k:each activities.created_date}</span>
+                                <p>left a note about <strong>{k:var deals.name}</strong></p>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="hidden" name="token" value="{k:var deals_edit_note_token}" />
+                                <input type="hidden" name="commit" value="{k:var deals_edit_note_commit}" />
+                                <input type="hidden" id="id" name="id" value="{k:each activities.noteId}" />
+                                <button type="button" class="pull-right btn btn-info editTask"><i class="fa fa-pencil"> Edit </i></button>
+                                <button type="button" class="pull-right btn btn-warning cancelTask hidden"><i class="fa fa-ban"> Cancel </i></button>
+                                <button class="pull-right btn btn-info saveTask hidden"><i class="fa fa-floppy-o "> Update </i></button>
+                                    
+                            </div>
+                        </div>
+    
+                        <hr />
+                        <div class="textNote">
+                            {k:each activities.note_content}
+                        </div>
+                        <div class="editNote hidden">
+                            <textarea disabled class="form-control" name="content" placeholder="Start typing to leave a note..." form-valid="str:5">{k:each activities.note_content}</textarea>
+                        </div>
+                        <hr  style="clear: both;"/>
+                        {k:each:if activities:hasAttach}
+                        <h3 class="pull-left">Attachments
+                           
+                        </h3>
+    
+                        {/k:each:if activities:hasAttach}
+                        <div style="margin-top: 10px;" class="attachFile pull-left hidden">
+                            <p>
+                                <button type="button" class="btn btn-outline btn-default btn-sm btnFiles">
+                                    <i class="fa fa-paperclip"></i>
+                                </button>
+                                <input type="file" data-type="note" name="note_attach" form-valid="files:0:5:'txt',jpg,png,gif,bmp,doc,docx,xls,xlsx,ppt,pptx,csv,zip,rar:1:2000000" class="hidden pannelFiles" multiple /> 
+                            </p>
+                            <div id="noteAttach{k:each activities.noteId}">
+                                
+                            </div>
+                            <div id="noteNoneAttach{k:each activities.noteId}"></div>
+                        </div>
+                        {k:each:if activities:hasAttach}
+                            <div  style="margin-top: 15px;margin-left:10px" class=" pull-left checkbox checkbox-success checkbox-circle attachFile hidden">
+                                <input id="checkbox-10" name="deleteOldFile" type="checkbox">
+                                <label for="checkbox-10"> Delete Old File </label>
+                            </div>
+                        {/k:each:if activities:hasAttach}
+                        <ul style="clear: both;">
+                            {k:each:if activities:hasAttach}
+    
+                    
+                                <k:each activities.attachments>
+                                <li>
+                                    <a href="#">{k:each activities.attachments.old_name}</a>
+                                </li>
+                                </k:each activities.attachments>
+    
+                            {/k:each:if activities:hasAttach}
+                        </ul>
+    
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

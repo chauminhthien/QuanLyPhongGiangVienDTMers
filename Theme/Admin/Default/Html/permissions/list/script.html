@@ -1,0 +1,37 @@
+<script src="{k:var prefix_url_theme}/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script>
+
+    function interface_after_full_ajax_success(selector, response, type){
+        if ('create' == response.action){
+            $('.right-sidebar').removeClass('shw-rside');
+            $(selector)[0].reset();
+            $('#main-list').prepend(response.data);
+        }
+    }
+
+    function interface_after_delete_success(selector){
+        let selectorTr = $(selector).parent().parent();
+        selectorTr.remove();
+
+        let id = selectorTr.attr('id').split('-')[1];
+        if(+id > 0) $('#table-' + id).remove(); 
+
+    }
+
+    $(document).ready(function(){
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+
+        $(document).on('click', '.btn-save', function(){
+            let selector = $(this).parent().parent();
+
+            Validate.action(selector, {
+                beforeValid : interface_before_validate,
+                validError : interface_error_validate,
+                ajaxError : interface_ajax_error,
+                ajaxSuccess : interface_ajax_success
+            });
+        });
+    })
+</script>

@@ -1,0 +1,107 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <!-- /row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+
+                    <div class="col-sm-12" style="margin-bottom:5px">
+                        <k:if has_button>
+                            <k:if:var myaccount.is_admin>
+                                <button class="right-side-toggle btn btn-info btn-rounded pull-right m-l-20">
+                                    {k:var breadcrumb_button_name}
+                                </button>
+                            </k:if:var myaccount.is_admin>
+                        </k:if has_button>
+                    </div>
+
+                    <div class="table">
+                        <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                            <table id="myTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 181px;">Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Domain name: activate to sort column ascending" style="width: 271px;">Domain name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 138px;">Start date</th>
+                                        <th class="text-center" width="15%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <k:each listcompanies>
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1">
+                                            <a href="{k:each listcompanies.url_activity}">{k:each listcompanies.name}</a>
+                                        </td>
+                                        <td>
+                                            <a href="">{k:each listcompanies.domain_name}</a>
+                                        </td>
+                                        <td>
+                                           {k:each listcompanies.created_at}
+                                        </td>
+
+                                        <td class="text-center">
+                                            <a href="{k:each listcompanies.url_edit}" class="label label-info">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            &nbsp;&nbsp;
+                                            <div method="post" action="{k:var url_list}" class="label label-danger deleteItemList">
+                                                <input type="hidden" name="token" value="{k:var companies_delete_token}" />
+                                                <input type="hidden" name="commit" value="{k:var companies_delete_commit}" />
+                                                <input type="hidden" name="id" value="{k:each listcompanies.id}" />
+                                                <i class="fa fa-trash-o"></i>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    </k:each listcompanies>
+                                </tbody>
+                            </table>
+                            <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Showing {k:var paging_item_start} to {k:var paging_item_end} of {k:var paging_item_total} entries</div>
+                            <div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate">
+                                <k:if:var paging_btn_prev>
+                                    <a class="paginate_button fitst" href="{k:var url_contacts}">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                    <a class="paginate_button previous" href="{k:var paging_btn_prev}">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </k:if:var paging_btn_prev>
+                                <k:if dotted_left>
+                                    <span class="paginate_button p-0" style="font-size: 25px;">&hellip;</span>
+                                </k:if dotted_left>
+                                <span>
+                                    <k:each paging_button>
+                                        <a href="{k:each paging_button.url}" class="paginate_button {k:each paging_button.cur_class}" aria-controls="myTable" data-dt-idx="{k:each paging_button.name}" tabindex="0">{k:each paging_button.name}</a>
+                                    </k:each paging_button>
+                                </span>
+                                <k:if dotted_right>
+                                    <span class="paginate_button p-0" style="font-size: 25px;">&hellip;</span>
+                                </k:if dotted_right>
+                                <k:if:var paging_btn_next>
+                                    <a class="paginate_button next" href="{k:var paging_btn_next}">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="paginate_button last" href="{k:var paging_btn_last}">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                </k:if:var paging_btn_next>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <k:inc right_sidebar>
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

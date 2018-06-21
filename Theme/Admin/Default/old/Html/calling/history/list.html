@@ -1,0 +1,69 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <!-- /row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="pagination">
+                        <a href="#">&lt;</a>
+                        <a href="#">&gt;</a>
+                        <input type="text" name="paging_current" value="{k:var paging_current}" class="text-center" style="width: 50px;" /> / {k:var paging_total}
+                    </div>
+                    <div class="table-responsive">
+                        <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                            <table id="myTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th width="100px" class="text-center">Call date</th>
+                                        <th class="text-center">Customer</th>
+                                        <th class="text-center">Agent</th>
+                                        <th  class="text-center">Status</th>
+                                        <th width="100px" class="text-center">Duration</th>
+                                        <th  class="text-center">Recording</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <k:each history>
+                                        <tr role="row" class="odd" action="{k:var url_current}" method="post" id="list-data-{k:each pbxs.id}">
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                {k:each history.calldate}
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                <p><strong>{k:each history.customer_name}</strong></p>
+                                                {k:each history.phone}
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                <p><strong>{k:each history.agent_name}</strong></p>
+                                                {k:each history.agent}
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                <p>{k:each history.call_type}</p>
+                                                <span class="label label-{k:each history.class_status}">{k:each history.disposition}</span>
+                                            </td>
+                                            <td style="vertical-align: middle;">
+                                                <small>Total: {k:each history.duration}s</small><br>
+                                                <small>Ringing: {k:each history.ringing}s</small><br>
+                                                <small>Billsec: {k:each history.billsec}s</small>
+                                            </td>
+                                            <td style="vertical-align: middle;">
+                                                {k:each:if history:recordingfile}
+                                                <audio controls>
+                                                    <source src="//s3.ippbx.com.vn/admin/recording/monitor/{k:each history.folder}/{k:each history.recordingfile}" />
+                                                </audio>
+                                                {/k:each:if history:recordingfile}
+                                            </td>
+                                        </tr>
+                                    </k:each history>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

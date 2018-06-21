@@ -1,0 +1,81 @@
+<script type="text/javascript">
+    function call_top_error_popup(msg){
+        $.toast({
+            heading: 'Error',
+            text: msg,
+            position: 'top-right',
+            loaderBg: '#ff6849',
+            icon: 'error',
+            hideAfter: 1500
+
+        });
+    }
+    function call_top_success_popup(msg){
+        $.toast({
+            heading: 'Success',
+            text: msg,
+            position: 'top-right',
+            loaderBg: '#ff6849',
+            icon: 'success',
+            hideAfter: 3500,
+            stack: 6
+        });
+    }
+    jQuery(document).ready(function() {
+        // Switchery
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+
+        $(document).on('click', '.deleteGroup', function(){
+            var btn = this, doDeleteGroup = function(){
+                $(btn).find('input.paramHidden').prop('disabled', false);
+                Validate.action(btn, {
+                    ajaxSuccess : function(selector, response, xhr){
+                        var result = response;
+                        Alert.close();
+                        $(btn).find('input.paramHidden').prop('disabled', true);
+                        try{
+                            if ('object' !== $.type(result) && 'array' !== $.type(result)) result = JSON.parse(response);
+                            if ('success' === result.status){
+                                $.toast({
+                                    heading: 'Success',
+                                    text: 'Delete group success.',
+                                    position: 'top-right',
+                                    loaderBg: '#ff6849',
+                                    icon: 'success',
+                                    hideAfter: 3500,
+                                    stack: 6
+                                });
+                                $('#groups-' + $(btn).find(['input[name=id]']).val()).remove();
+                            }
+                            else call_top_error_popup(result.message);
+                        }catch(e){
+                            call_top_error_popup('Cannot connect to server.');
+                        }
+                        response = null;
+                    },
+                    ajaxError : function(){
+                        $(btn).find('input.paramHidden').prop('disabled', true);
+                        call_top_error_popup('Cannot connect to server.');
+                    }
+                });
+            };
+            Alert.popup({
+                title : 'Delete group',
+                classes : 'warning',
+                message : 'Are you sure delete group',
+                btn : [
+                    {label : 'Cancel', color : 'orange', isFocus : true, fn : Alert.close},
+                    {label : 'Delete', color : 'orange', fn : doDeleteGroup}
+                ]
+            })
+            return false;
+        });
+
+        // For select 2
+        $(".select2").select2();
+
+    });
+</script>

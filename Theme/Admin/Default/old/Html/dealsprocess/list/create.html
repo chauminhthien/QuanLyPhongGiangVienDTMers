@@ -1,0 +1,54 @@
+<!-- .right-sidebar -->
+<div class="right-sidebar" style="display: block;">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+        <div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">
+            <div class="rpanel-title"> Create Process 
+                <span><i class="ti-close right-side-toggle"></i></span> 
+            </div>
+            <div class="r-panel-body">
+                <form class="form-horizontal senbacAjaxForm" method="post" action="{k:var url_current}">
+                    <div class="form-group">
+                        <label class="col-md-12" for="name">Name</label>
+                        <div class="col-md-12">
+                            <input id="name" name="name" form-valid="str:3:100" class="form-control"> 
+                            <span class="help-block hidden">Name invalid or range exceed of 3 - 100 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ordering" class="col-md-12">Ordering</label>
+                        <div class="col-md-12">
+                            <input type="text" value="0" id="ordering" name="ordering" form-valid="int:0" class="form-control"> 
+                            <span class="help-block hidden">Range exceed miximum of number 0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="option" class="col-md-12">Custom field</label>
+                        <div class="col-md-12">
+                            <select id="option" name="extra" class="select2" multiple="multiple">
+                                <option value="name">Name Deals</option>
+                                <option value="contact_id">Contact</option>
+                                <option value="owner_id">Owner</option>
+                                <option value="amount">Amount</option>
+                                <option value="close_time">Close Time</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12" style="text-align: center;">
+                            <input type="hidden" name="token" value="{k:var deals_process_create_token}" />
+                            <input type="hidden" name="commit" value="{k:var deals_process_create_commit}" />
+                            <input type="hidden" value="0" id="typesubmit" />
+                            <button type="submit" class="btn btn-info btn-rounded">Create Process</button>
+                            <button class="btn btn-outline btn-rounded btn-warning right-side-toggle">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div>
+        <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+    </div>
+</div>

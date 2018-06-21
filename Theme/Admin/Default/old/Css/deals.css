@@ -1,0 +1,153 @@
+
+/* ====================================== */
+.align-self-stretch {
+  display: flex;
+  align-self: stretch !important;
+}
+
+.UIColumn-spreads {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+}
+
+.overflow-x-auto {
+  overflow-x: auto!important;
+}
+
+.align-stretch {
+  display: flex;
+  align-items: stretch !important;
+}
+
+.justify-start {
+  display: flex;
+  justify-content: flex-start !important;
+}
+
+.board-column-item-column:first-child {
+  min-height: 400px;
+}
+
+.flex-shrink-0, .no-shrink {
+  display: flex;
+  flex-shrink: 0!important;
+}
+
+.board-column-item-column {
+  border: 1px solid #dfe3eb;
+  border-right: none;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between!important;
+}
+
+.board-column {
+  display: flex;
+  width: 260px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #f5f8fa;
+}
+
+.board-column .board-column-inner {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column!important;
+}
+
+.board-column header {
+  border-bottom: 1px solid #dfe3eb;
+}
+
+.p-top-4, .p-y-4 {
+  padding-top: 16px!important;
+}
+
+.p-y-4 {
+  padding-bottom: 16px!important;
+}
+
+.p-x-2 {
+  padding-left: 8px!important;
+  padding-right: 8px!important;
+}
+
+.board-column-list {
+  overflow-y: auto;
+  margin: 0;
+  flex-grow: 1;
+  height: 0;
+}
+
+.UIColumn-wrapper {
+  justify-content: space-between;
+  display: inline-flex;
+  word-break: break-word;
+  overflow: visible;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.UIColumn-spreads {
+  flex-shrink: 100000;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+}
+
+.board-column header h6 {
+  font-size: 14px;
+  line-height: 14px;
+  margin: 0;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.truncate-text, .truncate-text-weak {
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  overflow: hidden!important;
+  text-overflow: ellipsis!important;
+  white-space: nowrap!important;
+}
+
+.m-y-3 {
+  margin-top: 12px!important;
+  margin-bottom: 12px!important;
+}
+
+.private-card__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+}
+
+.private-card {
+  border-radius: .1875rem;
+  background-color: #fff;
+  box-shadow: 0 1px 5px 0 rgba(45,62,80,.12);
+  padding: 2.5rem;
+  position: relative;
+}
+
+.board-column-list .card {
+  cursor: pointer;
+  z-index: 99999999999 !important;
+}

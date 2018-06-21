@@ -1,0 +1,36 @@
+<div class="row el-element-overlay m-b-40">
+
+  <k:each listRoom>
+    <div id="room-{k:each listRoom.id}" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="white-box">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1">
+                    <canvas text="{k:each listRoom.name}" style="width: 100%; height: 250px" class="imgRoms"></canvas>
+                    <!-- <img src="{k:var prefix_url_theme}/plugins/images/users/7.jpg"> -->
+                    <div class="el-overlay {k:each listRoom.style}"> <!-- ascac -->
+                        <ul class="el-info">
+                          <li>
+                            <a method="post" action="{k:var url_room_res}" class="btn default btn-outline res-rooms" href="#">
+                              <input type="hidden" name="date_from" value="{k:var data.date_from}">
+                              <input type="hidden" name="date_to" value="{k:var data.date_to}">
+                              <input type="hidden" name="time_from" value="{k:var data.time_from}">
+                              <input type="hidden" name="time_to" value="{k:var data.time_to}">
+                              <input type="hidden" name="min_student" value="{k:var data.min_student}">
+                              <input type="hidden" name="token" value="{k:var room_res_token}">
+                              <input type="hidden" name="commit" value="{k:var room_res_commit}">
+                              <input type="hidden" name="id" value="{k:each listRoom.id}">
+                              <i class="ti-plus"></i>
+                            </a>
+                          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="el-card-content">
+                    <h3 class="box-title">Phòng: {k:each listRoom.name}</h3> <small>Số ghế: {k:each listRoom.max_student}</small>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+  </k:each listRoom>
+</div>

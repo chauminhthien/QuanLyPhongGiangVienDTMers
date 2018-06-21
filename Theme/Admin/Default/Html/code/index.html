@@ -1,0 +1,127 @@
+<!-- row -->
+<div class="row">
+    
+    <div class="col-md-12">
+            <div class="white-box">
+                <div class="row b-b m-b-15 p-b-10">
+                    <div class="col-md-12" method="post" action="{k:var url_current}" id="codeExport">
+                        <form action="{k:var url_current}" method="get">
+                            <div class="pull-left" style="line-height: 30px">
+                                <label> From date: </label>
+                                <span>
+                                    <input value="{k:var fromdate}" type="text" class="isDatePicker hidden" name="fromdate" />
+                                    <span class="textDatepicker">{k:var fromdate}</span>
+                                </span>
+                            </div>
+                            <div class="pull-left m-l-15" style="line-height: 30px">
+                                <label> To date: </label>
+                                <span>
+                                    <input value="{k:var todate}" type="text" class="isDatePicker hidden" name="todate" />
+                                    <span class="textDatepicker">{k:var todate}</span>
+                                </span>
+                            </div>
+                            
+                            <div class="col-md-1">
+                                <select name="status" class="form-control pull-left">
+                                    <option {k:var select_st_2} value="2">All</option>
+                                    <option {k:var select_st_0} value="0">Unused</option>
+                                    <option {k:var select_st_1} value="1">Used</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-success m-l-20">
+                                Search
+                            </button>
+                            <button type="button" class="btn btn-success m-l-20 btn-export">
+                                Export
+                            </button>
+                        </form>
+                        <input type="hidden" name="token" value="{k:var name_export_token}" />
+                        <input type="hidden" name="commit" value="{k:var name_export_commit}" />
+                    </div>
+                </div>
+                <div class="row b-b m-b-15 p-b-10">
+                    <div class="col-md-6">
+                        Total: <strong class="text-info">{k:var totalItem}</strong> <br />
+                        Used: <strong class="text-danger">{k:var used}</strong> <br />
+                        Unused: <strong class="text-success">{k:var Unused}</strong>
+                    </div>
+                    
+                    <div class="col-md-6 ">
+                        <button class="right-side-toggle btn btn-success pull-right m-l-20">
+                            Create auto
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="scrollable">
+                    <div class="table-responsive">
+                        <table class="table table-hover contact-list">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Serial</th>
+                                    <th>Create at</th>
+                                    <k:if:var myaccount.type>
+                                        <th>Create by</th>
+                                    </k:if:var myaccount.type>
+                                    
+                                    <th>Status</th>
+                                    <th width="10%" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="main-list">
+                                <k:inc item>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>           
+    </div>
+</div>
+<ul class="pagination pull-right">
+        <k:if:var paging_btn_prev>
+            <li>
+                <a class="paginate_button fitst" href="{k:var url_list}">
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+            </li>
+            <li>
+                <a class="paginate_button previous" href="{k:var paging_btn_prev}">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+            
+        </k:if:var paging_btn_prev>
+        <k:if dotted_left>
+            <li>
+              <span>&hellip;</span>
+            </li>
+        </k:if dotted_left>
+       
+        <k:each paging_button>
+            <li>
+              <a href="{k:each paging_button.url}" class="{k:each paging_button.cur_class}" aria-controls="myTable" data-dt-idx="{k:each paging_button.name}" tabindex="0">{k:each paging_button.name}</a>
+            </li>
+        </k:each paging_button>
+        
+        <k:if dotted_right>
+            <li>
+              <span>&hellip;</span>
+            </li>
+        </k:if dotted_right>
+        <k:if:var paging_btn_next>
+            <li>
+              <a class="paginate_button next" href="{k:var paging_btn_next}">
+                  <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+              
+            <li>
+              <a class="paginate_button last" href="{k:var paging_btn_last}">
+                  <i class="fa fa-angle-double-right"></i>
+              </a>
+            </li>
+        </k:if:var paging_btn_next>
+      </ul>
+<!-- /row -->
+<k:inc create>

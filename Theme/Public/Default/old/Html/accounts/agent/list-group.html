@@ -1,0 +1,33 @@
+<table id="myTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+        <thead>
+            <tr role="row">
+                <th width="200px">Name</th>
+                <th >Agent</th>
+                <th width="50px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <k:each groups>
+            <tr role="row" class="odd" action="{k:var url_current}" method="post" id="list-data-{k:each groups.id}">
+                <td class="sorting_1">
+                    {k:each groups.name}
+                </td>
+                <td>
+                    <select class="select2" multiple="multiple" name="agents">
+                        <k:each agents>
+                            <option {k:var group_{k:each groups.id}_{k:each agents.name}} value="{k:each agents.name}">{k:each agents.name}</option>
+                        </k:each agents>
+                    </select>            
+                </td>
+                <td valign="middle" style="vertical-align: middle;">
+                    <input type="hidden" name="token" value="{k:var agent_update_group_token}" />
+                    <input type="hidden" name="commit" value="{k:var agent_update_group_commit}" />
+                    <input type="hidden" name="id" value="{k:each groups.id}" />
+                    <a href="#" class="label label-success updateItemList" data-id="{k:each groups.id}">
+                        <i class="fa fa-save"></i>
+                    </a>
+                </td>
+            </tr>
+            </k:each groups>
+        </tbody>
+    </table>

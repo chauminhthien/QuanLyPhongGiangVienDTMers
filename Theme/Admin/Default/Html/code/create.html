@@ -1,0 +1,34 @@
+<!-- ============================================================== -->
+<!-- Right sidebar -->
+<!-- ============================================================== -->
+<!-- .right-sidebar -->
+<div class="right-sidebar senbac-right-sidebar">
+    <div class="slimscrollright">
+        <div class="rpanel-title">
+            <strong>Create</strong>
+            <span><i class="ti-close right-side-toggle"></i></span> 
+        </div>
+        <div class="r-panel-body">
+            <form method="post" action="{k:var url_current}" class="senbacForm">
+
+                <div class="form-group">
+                    <label>Number code create<span class="text-important">*</span></label>
+                    <div class="">
+                        <input type="text" name="numCode" class="form-control" placeholder="Number Code" form-valid="str:1:1000" />
+                        <small class="help-block hidden"> Number code from 1 to 1000 </small>
+                    </div>
+                </div>
+         
+                <div class="form-actions">
+                    <input type="hidden" name="token" value="{k:var name_create_token}" />
+                    <input type="hidden" name="commit" value="{k:var name_create_commit}" />
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Create</button>
+                    <button type="button" class="right-side-toggle btn btn-default">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Right sidebar -->
+<!-- ============================================================== -->

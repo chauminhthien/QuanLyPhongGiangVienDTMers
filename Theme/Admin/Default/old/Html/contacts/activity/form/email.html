@@ -1,0 +1,106 @@
+<div class="white-box">
+    <kif:var contact.email>
+        <form method="post" action="{k:var url_email}" class="senbacAjaxForm">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>To</label>
+                </div>
+                <div class="col-md-8">
+                    {k:var myaccount.firstname} {k:var myaccount.lastname} ({k:var myaccount.email})
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="pull-right" id="showBCC">Bcc</a>
+                    <a href="#" class="pull-right" id="showCC" style="margin-right: 15px;">Cc</a>
+                </div>
+            </div>
+            <div class="hideCC hidden">
+                <hr />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Cc</label>
+                    </div>
+                    <div class="col-md-10">
+                        <select name="mailcc" class="select2 select2-multiple" multiple="multiple" data-role="tagsinput">
+                            <k:each listaccounts>
+                                <option value="{k:each listaccounts.id}">{k:each listaccounts.firstname} {k:each listaccounts.lastname} ({k:each listaccounts.email})</option>
+                            </k:each listaccounts>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="hideBCC hidden">
+                <hr />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Bcc</label>
+                    </div>
+                    <div class="col-md-10">
+                        <select name="mailbcc" class="select2 select2-multiple" multiple="multiple">
+                            <k:each listaccounts>
+                                <option value="{k:each listaccounts.id}">{k:each listaccounts.firstname} {k:each listaccounts.lastname} ({k:each listaccounts.email})</option>
+                            </k:each listaccounts>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    <label>From</label>
+                </div>
+                <div class="col-md-8">
+                    {k:var contact.firstname} {k:var contact.lastname} ({k:var contact.email})
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Subject</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" name="subject" class="form-control" form-valid="str:2:200" />
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea class="form-control" name="content" form-valid="str:5" placeholder="Body email..."></textarea>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <button type="button" class="btn btn-outline btn-default btn-sm btnFiles">
+                            <i class="fa fa-paperclip"></i>
+                        </button>
+                        <input type="file" data-type="email" name="email_attach" form-valid="files:0:5:'txt',jpg,png,gif,bmp,doc,docx,xls,xlsx,ppt,pptx,csv,zip,rar:1:2000000" class="hidden pannelFiles" multiple /> 
+                    </p>
+                    <div id="emailAttach"></div>
+                    <div id="emailNoneAttach"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <div class="col-sm-6">
+                        <div class="checkbox checkbox-primary p-t-0">
+                            <input id="checkbox-notetask" name="create_task" value="1" type="checkbox">
+                            <label for="checkbox-notetask"> Create a task in </label> 
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" name="due_date_task" class="form-control isPicker" data-date-format="dd/mm/yy" readonly value="" />
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <input type="hidden" name="token" value="{k:var contacts_email_token}" />
+                    <input type="hidden" name="commit" value="{k:var contacts_email_commit}" />
+                    <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-pencil"></i> Send mail</button>
+                </div>
+            </div>
+            
+        </form>
+    <k:else:var contact.email>
+        <p>Please update company's phone.</p>    
+    </k:if:var contact.email> 
+</div>

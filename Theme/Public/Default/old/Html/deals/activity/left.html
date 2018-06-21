@@ -1,0 +1,142 @@
+<div class="col-md-4 col-xs-12">
+    <div class="white-box">
+        <form method="post" action="{k:var url_edit}" class="leftEditForm senbacAjaxForm">
+            <div class="col-md-12" style="margin: 5px;text-align:center">
+                <input type="hidden" name="token" value="{k:var deals_edit_token}" />
+                <input type="hidden" name="commit" value="{k:var deals_edit_commit}" />
+                <button type="submit" class="btn btn-info btn-rounded hidden">Save</button>
+                <button type="button" class="btn btn-outline btn-rounded btn-warning cancelForm hidden">Cancel</button>
+                <button type="button" class="btn btn-info btn-rounded editForm">Edit</button>
+            </div>
+            <div class="user-btm-box" style="padding-top: 0;">
+                <div class="table-responsive">
+                
+                    <table class="table">
+                        
+                        <tbody class="showTable">
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><p>{k:var deals.name}</p></td>
+                            
+                            </tr>
+                            <tr>
+                                <td><strong>Amount</strong></td>
+                                <td><p>{k:var deals.amount}</p></td>
+                            
+                            </tr>
+                            <tr>
+                                <td><strong>Close time</strong></td>
+                                <td>
+                                    <p>{k:var deals.close_time_conver}</p>
+                                </td>
+                            
+                            </tr>
+
+
+                        </tbody>
+                        <tbody class="editTable hidden">
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><input type="text" name="name" id="name" class="left-upsert form-control" placeholder="" value="{k:var deals.name}" data-old="{k:var deals.name}" /></td>
+                            
+                            </tr>
+                            <tr>
+                                <td><strong>Amount</strong></td>
+                                <td><input type="text" name="amount" id="amount" class="left-upsert form-control" placeholder="" value="{k:var deals.amount}" data-old="{k:var deals.amount}" /></td>
+                            
+                            </tr>
+                            <tr>
+                                <td><strong>Close time</strong></td>
+                                <td>
+                                    <div class="col-md-12">
+                                        <input type="text" readonly name="date" class="form-control isPicker1" value="{k:var deals.close_time_date}"/>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" readonly name="time" class=" form-control isTime" value="{k:var deals.close_time_time}"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="white-box panel p-0" >
+        <div class="panel-heading">
+                
+            <b>{k:var deals.name}'s Contact</b>
+
+            
+            <div class="pull-right">
+                <a data-perform="panel-collapse">
+                    <i class="ti-minus"></i>
+                </a>
+                <a class="editContact">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="cancelContact hidden">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-wrapper panel-collapse collapse in" aria-expanded="true">
+            <div id="contact_name" style="padding-left:30px;padding-bottom: 15px">
+                    <p>{k:var deals.contact_name}</p>
+            </div>   
+            <form class="showContact hidden senbacAjaxForm" method="post" action="{k:var url_edit}">
+                <div class="col-md-12 white-box panel form-group" style="padding-top: 0px">
+                    <input type="hidden" name="token" value="{k:var deals_change_contact_token}" />
+                    <input type="hidden" name="commit" value="{k:var deals_change_contact_commit}" />
+                    <select class="form-control select2" name="contact_id" id="contact_of_deal">
+                        <option value="0">No Contact</option>
+                        <k:each listcontacts>
+                            <option value="{k:each listcontacts.id}" {k:each listcontacts.selected}>{k:each listcontacts.firstname} {k:each listcontacts.lastname}</option>
+                        </k:each listcontacts>
+                    </select>
+                </div>
+            </form>
+        </div>        
+    </div>
+
+    <div class="white-box panel p-0" style="clear: both;">
+        <div class="panel-heading">
+                
+            <b>{k:var deals.name}'s Company</b>
+
+            
+            <div class="pull-right">
+                <a data-perform="panel-collapse">
+                    <i class="ti-minus"></i>
+                </a>
+                <a class="editCompany">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="cancelCompany hidden">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-wrapper panel-collapse collapse in" aria-expanded="true">
+            <div id="company_name" style="padding-left:30px;padding-bottom: 15px">
+                    <p>{k:var deals.company_name}</p>
+            </div>   
+            <form class="showCompany hidden senbacAjaxForm" method="post" action="{k:var url_edit}">
+                <div class="col-md-12 white-box panel form-group" style="padding-top: 0px">
+                    <input type="hidden" name="token" value="{k:var deals_change_company_token}" />
+                    <input type="hidden" name="commit" value="{k:var deals_change_company_commit}" />
+                    <select class="form-control select2" name="company_id" id="company_of_deal">
+                        <option value="0">No Company</option>
+                        <k:each listcompanies>
+                            <option value="{k:each listcompanies.id}" {k:each listcompanies.selected}>{k:each listcompanies.name}</option>
+                        </k:each listcompanies>
+                    </select>
+                </div>
+            </form>
+        </div>        
+    </div>
+
+</div>

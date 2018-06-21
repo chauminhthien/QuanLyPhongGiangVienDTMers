@@ -1,0 +1,37 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <div class="row">
+          <div class="col-sm-12">
+              <div class="white-box">
+                <form class="form-horizontal senbacAjaxForm" method="post" action="{k:var url_current}">
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <h3>Change Password</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                        <input class="form-control" type="password" name="password" required="" placeholder="password" form-valid="str:6:32">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                        <input class="form-control" type="password" name="confirm_password" required="" placeholder="confirm password" form-valid="str:6:32">
+                        </div>
+                    </div>
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                        <input type="hidden" name="token" value="{k:var accounts_access_reset_token}" />
+                        <input type="hidden" name="commit" value="{k:var accounts_access_reset_commit}" />          
+                        <button class="btn btn-primary btn-lg text-uppercase waves-effect waves-light" type="submit">Reset</button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+  </div>

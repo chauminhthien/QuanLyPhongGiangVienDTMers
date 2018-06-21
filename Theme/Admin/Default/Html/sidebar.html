@@ -1,0 +1,110 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav slimscrollsidebar">
+        <div class="sidebar-head">
+        <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
+        <ul class="nav" id="side-menu">
+            <li class="user-pro {k:var active_profile}">
+                <a href="#" class="waves-effect {k:var active_profile}">
+                    <img src="<k:if:var myaccount.avatar>{k:var url_project}/{k:var myaccount.avatar}<k:else:var myaccount.avatar>{k:var prefix_url_theme}/Images/user.jpg</k:if:var myaccount.avatar>" alt="user-img" class="img-circle autoImage-{k:var myaccount.id}">
+                    <span class="hide-menu"> {k:var myaccount.fullname}<span class="fa arrow"></span></span>
+                </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false" >
+                    <li>
+                        <a class="{k:var active_profile}" href="{k:var url_profile}"><i class="ti-user"></i> <span class="hide-menu">My Profile</span></a>
+                    </li>
+                    <li>
+                        <a href="{k:var url_logout}"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="">
+                <a href="{k:var url_home}" class="{k:var active_home} ">
+                    <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> 
+                    <span class="hide-menu"> Dashboard</span>
+                </a>
+            </li>
+            <k:if accounts>
+                <li class="{k:var active_account}">
+                    <a href="#" class="waves-effect {k:var active_account}">
+                        <i class="fa fa-users fa-fw"></i>
+                        <span class="hide-menu">Accounts<span class="fa arrow"></span> </span>
+                    </a>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" >
+                        <k:if users>
+                            <k:if userlist>
+                                <li>
+                                    <a href="{k:var url_user_list}" class="{k:var active_user}">
+                                        <i data-icon="&#xe026;" class="fa fa-user fa-fw"></i> 
+                                        <span class="hide-menu">Users</span>
+                                    </a>
+                                </li>
+                            </k:if userlist>
+                        </k:if users>
+
+                        <k:if member>
+                            <k:if member_list>
+                                <li>
+                                    <a href="{k:var url_members}" class="{k:var active_members}">
+                                        <i data-icon="&#xe026;" class="fa fa-users fa-fw"></i> 
+                                        <span class="hide-menu">Member</span>
+                                    </a>
+                                </li>
+                            </k:if member_list>
+                        </k:if member>
+                        
+                    </ul>
+                </li>
+            </k:if accounts>
+
+            <k:if categories>
+                <li class="{k:var active_cate}">
+                    <a href="#" class="waves-effect {k:var active_cate}">
+                        <i class="icon-grid fa-fw"></i>
+                        <span class="hide-menu">Categories<span class="fa arrow"></span> </span>
+                    </a>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" >
+                        <k:if cate_room>
+                            <li>
+                                <a href="{k:var url_room}" class="{k:var active_cate_room}">
+                                    <i data-icon="&#xe026;" class="ti-layout-width-default fa-fw"></i> 
+                                    <span class="hide-menu">Room</span>
+                                </a>
+                            </li>
+                        </k:if cate_room>
+                        
+                    </ul>
+                </li>
+            </k:if categories>
+
+            <k:if:var myaccount.root>
+                <li class="">
+                    <a href="{k:var url_permissions}" class="{k:var active_permissions} ">
+                        <i class="mdi mdi-format-color-fill fa-fw" data-icon="v"></i> 
+                        <span class="hide-menu"> Permissions</span>
+                    </a>
+                </li>
+            </k:if:var myaccount.root>
+
+            <k:if settings>
+                <li class="{k:var active_setting}">
+                    <a href="#" class="waves-effect {k:var active_setting}">
+                        <i class="ti-settings fa-fw"></i>
+                        <span class="hide-menu">Settings<span class="fa arrow"></span> </span>
+                    </a>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" >
+                        <k:if st_send_mail>
+                            <li>
+                                <a href="{k:var url_seting_sendmail}" class="{k:var active_setting_sendmail}">
+                                    <i data-icon="&#xe026;" class=" ti-email fa-fw"></i> 
+                                    <span class="hide-menu">Mailer</span>
+                                </a>
+                            </li>
+                        </k:if st_send_mail>
+                        
+                    </ul>
+                </li>
+            </k:if settings>
+        </ul>
+    </div>
+</div>

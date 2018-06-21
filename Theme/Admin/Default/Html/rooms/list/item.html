@@ -1,0 +1,56 @@
+<k:each listRoom>
+    <tr action="{k:var url_room_change}" method="post" id="user-{k:each listAccount.id}">
+                            
+        <td width="60">
+            {k:each listRoom.id}
+        </td>
+        <td>
+            <k:if change_room>
+                <input type="text" name="name" value="{k:each listRoom.name}" form-valid="str:3:200" class="form-control">
+            <k:else change_room>
+                {k:each listRoom.name}
+            </k:if change_room>
+            
+        </td>
+        <td>
+            <k:if change_room>
+                <input type="text" name="max_student" value="{k:each listRoom.max_student}" form-valid="int:1:999" class="form-control text-center">
+            <k:else change_room>
+                <p class="text-center">{k:each listRoom.max_student}</p>
+            </k:if change_room>
+            
+        </td>
+        <td class="text-center">  
+            <k:if change_room>
+                <input  name="status" data-id="{k:each listRoom.id}" type="checkbox" {k:each listRoom.checked} class="js-switch onChange" data-color="#53e69d" data-size="small" />
+            <k:else change_room>
+                {k:each:if listRoom:status}
+                    <span class="label label-rouded label-success">Open</span>
+                {k:each:else listRoom:status}
+                    <span class="label label-rouded label-danger">Close</span>
+                {/k:each:if listRoom:status}
+                    
+            </k:if change_room>
+            
+        </td>
+        <td>
+            <k:if change_room>
+                <button class="btn-save btn btn-sm btn-icon btn-pure btn-outline " data-toggle="tooltip" data-original-title="Save" aria-describedby="tooltip520009">
+                    <i class="ti-save" aria-hidden="true"></i>
+                </button>
+            </k:if change_room>
+
+            <k:if del_room>
+                <button action="{k:var url_room_delete}" method="post" type="button" class="deleteItemList btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                    <i class="ti-close" aria-hidden="true"></i>
+                    <input type="hidden" name="id" value="{k:each listRoom.id}">
+                    <input type="hidden" name="token" value="{k:var name_delete_token}">
+                    <input type="hidden" name="commit" value="{k:var name_delete_commit}">
+                </button>
+            </k:if del_room>
+        </td>
+        <input type="hidden" name="id" value="{k:each listRoom.id}">
+        <input type="hidden" name="token" value="{k:var name_change_token}">
+        <input type="hidden" name="commit" value="{k:var name_change_commit}">
+    </tr>
+</k:each listRoom>

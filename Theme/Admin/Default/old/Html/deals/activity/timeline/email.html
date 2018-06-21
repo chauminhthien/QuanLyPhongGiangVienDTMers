@@ -1,0 +1,42 @@
+<div class="sl-item" style="margin: 30px 0 0 0;">
+        <div class="sl-left"> 
+            <img src="{k:each:if activities:created_avatar
+            }{k:each activities.created_avatar}{k:each:else activities:created_avatar
+            }{k:var url_project}/Theme/Public/Default/Images/user.jpg{/k:each:if activities:created_avatar
+            }" alt="user" class="img-circle"> 
+        </div>
+        <div class="sl-right" style="padding-left: 0;">
+            <div class="m-l-40">
+                <div class="white-box" style="margin-bottom: 0;">
+                    <a href="#" class="text-info">{k:each activities.created_name}</a> 
+                    <span class="sl-date">{k:each activities.created_date}</span>
+                    <p>sent a tracked email to <strong>{k:var deals.name}</strong></p>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-1">Status:</div>
+                        <div class="col-md-1">{k:each activities.email_type}</div>
+                        <div class="col-md-1">Opens:</div>
+                        <div class="col-md-1">{k:each activities.email_opened}</div>
+                        <div class="col-md-1">Clicks:</div>
+                        <div class="col-md-1">0</div>
+                    </div>
+                    <hr />
+                    <div>
+                        <p><strong>{k:each activities.email_subject}</strong></p>
+                        <div>{k:each activities.email_content}</div>
+                    </div>
+                    {k:each:if activities:hasAttach}
+                    <hr />
+                    <h3>Attachments</h3>
+                    <ul>
+                        <k:each activities.attachments>
+                        <li>
+                            <a href="#">{k:each activities.attachments.old_name}</a>
+                        </li>
+                        </k:each activities.attachments>
+                    </ul>
+                    {/k:each:if activities:hasAttach}
+                </div>
+            </div>
+        </div>
+    </div>

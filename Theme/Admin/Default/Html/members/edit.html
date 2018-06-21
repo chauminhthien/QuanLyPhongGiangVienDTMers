@@ -1,0 +1,80 @@
+<div class="row">
+  <form action="{k:var url_current}" method="post" class="no-bg-addon formSubmit">
+  <div class="col-md-12">
+      <div class="white-box p-10-20 box">
+          <div class="row" >
+              <div class="col-md-6 col-xs-6 col-sm-6">
+                  <a href="{k:var url_members}" class="btn btn-flat btn-outline btn-info">Back to list</a>
+              </div>
+              <div class="col-md-6 col-xs-6 col-sm-6 ">
+                  <div class="form-actions pull-right">
+                      <input type="hidden" name="token" value="{k:var member_edit_token}" />
+                      <input type="hidden" name="commit" value="{k:var member_edit_commit}" />
+                      <input type="hidden" name="id" value="{k:var member.id}">
+                      <button type="submit" class="btn btn-flat btn-outline btn-info"> Update</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <div class="col-md-12">
+      <div class="white-box box box-info">
+        <div class="form-horizontal">
+          
+          <div class="form-group col-md-12">
+            <label>Email <span class="text-important">*</span></label>
+            <div class="">
+                <input type="text" value="{k:var member.email}" name="email" class="form-control" placeholder="Email" form-valid="email:7:100" />
+                <small class="help-block hidden">Email invalid or 7 - 100 characters</small>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label>Password <span class="text-important">*</span></label>
+            <div class="">
+                <input type="password" name="password" class="form-control" placeholder="Password" form-valid="str:0:32" />
+                <small class="help-block hidden">6 - 32 characters</small>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label>Fullname <span class="text-important">*</span></label>
+            <div class="">
+                <input value="{k:var member.fullname}" type="text" name="fullname" class="form-control" placeholder="Fullname" form-valid="str:3:200" />
+                <small class="help-block hidden">3 - 200 characters</small>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label>Phone <span class="text-important">*</span></label>
+            <div class="">
+                <input value="{k:var member.phone}" type="text" name="phone" class="form-control" placeholder="Phone" form-valid="str:7:15" />
+                <small class="help-block hidden">Phone invalid</small>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>Gender <span class="text-important">*</span></label>
+                <div class="">
+                    <select class="form-control" name="gender" form-valid="int:0:1">
+                        <option {k:var member_selected_1} value="1">Male</option>
+                        <option {k:var member_selected_0} value="0">Female</option>
+                    </select>
+                    <small class="help-block hidden">Gender Invalid</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>Birthday <span class="text-important">*</span></label>
+                <div class="">
+                    <input value="{k:var member.birthday}" name="birthday" form-valid="str:10:12" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                    <small class="help-block hidden">Birthday Invalid</small>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+      </div>
+  </div>
+  </form>
+</div>

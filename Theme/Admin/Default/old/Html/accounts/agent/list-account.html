@@ -1,0 +1,52 @@
+
+<k:each groups>
+    <div class="col-md-12">
+        <h4 style="margin: 0;"><strong>{k:each groups.name}</strong></h4>
+        <hr>
+    </div>
+    <table id="myTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+        <thead>
+            <tr role="row">
+                <th >Name</th>
+                <th>Email</th>
+                <th >Phone</th>
+                <th>Agent</th>
+                <th width="50px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <k:each groups.accounts>
+                <tr role="row" class="odd" action="{k:var url_current}" method="post" id="list-data-{k:each groups.accounts.id}">
+                    <td class="sorting_1">
+                        <span class="text-{k:each:if groups.accounts:actived}success{k:each:else groups.accounts:actived}danger{/k:each:if groups.accounts:actived}">
+                            {k:each groups.accounts.firstname} {k:each groups.accounts.lastname}
+                        </span>
+                    </td>
+                    <td class="sorting_1">
+                        {k:each groups.accounts.email}
+                    </td>
+                    <td class="sorting_1">
+                        {k:each groups.accounts.phone}
+                    </td>
+                    <td>
+                        <select class="select2 form-control" form-valid="str:1" name="agents">
+                            <option value="0">None Agent</option>
+                            <k:each agents>
+                                <option {k:var account_{k:each groups.accounts.id}_{k:each agents.name}} value="{k:each agents.name}">{k:each agents.name}</option>
+                            </k:each agents>
+                        </select>            
+                    </td>
+                    <td valign="middle" style="vertical-align: middle;">
+                        <input type="hidden" name="token" value="{k:var agent_update_account_token}" />
+                        <input type="hidden" name="commit" value="{k:var agent_update_account_commit}" />
+                        <input type="hidden" name="id" value="{k:each groups.accounts.id}" />
+                        <a href="#" class="label label-success updateItemList" data-id="{k:each groups.accounts.id}">
+                            <i class="fa fa-save"></i>
+                        </a>
+                    </td>
+                </tr>
+            </k:each groups.accounts>
+        </tbody>
+    </table>
+</k:each groups>
+

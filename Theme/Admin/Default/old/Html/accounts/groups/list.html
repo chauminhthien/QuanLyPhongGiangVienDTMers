@@ -1,0 +1,66 @@
+<div id="page-wrapper" style="min-height: 228px;">
+    <div class="container-fluid">
+        <k:inc breadcrumb>
+        <div class="row white-box">
+            <div class="col-md-12">
+                <div class="row">
+                    <k:if has_button>
+                        <k:if:var myaccount.is_admin>
+                            <button class="right-side-toggle btn btn-info btn-rounded pull-right m-l-20">
+                                {k:var breadcrumb_button_name}
+                            </button>
+                        </k:if:var myaccount.is_admin>
+                    </k:if has_button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list footable-loaded footable" data-page-size="10">
+                        <thead>
+                            <tr>
+                                <th class="footable-sortable">No<span class="footable-sort-indicator"></span></th>
+                                <th class="footable-sortable">Name<span class="footable-sort-indicator"></span></th>
+                                <th class="footable-sortable">Moderator<span class="footable-sort-indicator"></span></th>
+                                <th class="footable-sortable text-center">Action<span class="footable-sort-indicator"></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <k:each groups>
+                            <tr action="{k:var url_current}" method="post" class="footable-{k:each groups.class_row}" style="display: table-row;" id="list-data-{k:each groups.id}">
+                                <td><span class="footable-toggle"></span>{k:each groups.num}</td>
+                                <td>
+                                    <input type="text" name="name" value="{k:each groups.name}" form-valid="str:1:100" class="hiddenBorder" />
+                                </td>
+                                <td>
+                                    <select class="select2" name="moderator_id" style="width: 100%;">
+                                        <option value="0">--Moderator</option>
+                                        <k:each listaccounts>
+                                            <option value="{k:each listaccounts.id}" {k:var groups_{k:each groups.id}_{k:each listaccounts.id}}>{k:each listaccounts.firstname} {k:each listaccounts.lastname}</option>
+                                        </k:each listaccounts>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <input type="hidden" name="token" value="{k:var accounts_group_update_token}" />
+                                    <input type="hidden" name="commit" value="{k:var accounts_group_update_commit}" />
+                                    <a href="#" class="label label-info updateItemList" data-id="{k:each groups.id}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    &nbsp;
+                                    <a href="#" action="{k:var url_current}" method="post" class="label label-danger deleteGroups deleteItemList">
+                                        <input type="hidden" name="token" class="paramHidden" disabled value="{k:var accounts_group_delete_token}" />
+                                        <input type="hidden" name="commit" class="paramHidden" disabled value="{k:var accounts_group_delete_commit}" />
+                                        <input type="hidden" name="id" value="{k:each groups.id}" />
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </k:each groups>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+        <k:inc right_sidebar>
+    </div>
+    <footer class="footer text-center"> 2017 © Ample Admin brought to you by themedesigner.in </footer>
+</div>

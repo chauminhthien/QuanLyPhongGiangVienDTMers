@@ -1,0 +1,157 @@
+<div class="col-md-4 col-xs-12" >
+    <div class="white-box">
+        <div class="el-element-overlay">
+            <div class="el-card-item" style="padding-bottom: 0;">
+                <div class="el-card-avatar el-overlay-1" style="text-align: center;">
+                    <div style="width: 100px; height: 100px; margin: 0 auto; display: inline-block; position: relative;">
+                        <img style="width: 88px; height: 88px; display: inline-block;" class="img-circle contactsAvatar-{k:var contact.id}" src="<k:if:var contact.avatar>{k:var contact.avatar}<k:else:var contact.avatar>{k:var url_project}/Theme/Public/Default/Images/user.jpg</k:if:var contact.avatar>">
+                        <div class="el-overlay">
+                            <ul class="el-info">
+                                <li action="{k:var url_avatar}" method="post">
+                                    <a class="btn default btn-outline image-popup-vertical-fit btnSelectFile">
+                                        <i class="mdi mdi-cloud-upload"></i>
+                                    </a>
+                                    <input type="hidden" name="token" value="{k:var contacts_avatar_token}" />
+                                    <input type="hidden" name="commit" value="{k:var contacts_avatar_commit}" />
+                                    <input type="file" name="avatar" form-upload="file:1:1:jpg,png:10:2000000" accept="image/jpeg,image/png" class="hidden autoUpload" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="post" action="{k:var url_edit}" class="leftEditForm senbacAjaxForm">
+            <div class="col-md-12" style="margin: 5px;text-align:center">
+                <input type="hidden" name="token" value="{k:var contacts_edit_token}" />
+                <input type="hidden" name="commit" value="{k:var contacts_edit_commit}" />
+                <button type="submit" class="btn btn-info btn-rounded hidden">Save</button>
+                <button type="button" class="btn btn-outline btn-rounded btn-warning cancelForm hidden">Cancel</button>
+                <button type="button" class="btn btn-info btn-rounded editForm">Edit</button>
+            </div>
+            <div class="user-btm-box" style="padding-top:0;overflow: hidden;">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr class="fullNameEdit hidden">
+                                <td>
+                                    <strong>First Name</strong>
+                                </td>
+                                <td>
+                                    <input type="text" name="firstname" id="firstname" form-valid="str:1:100" class="hiddenBorder hidden" value="{k:var contact.firstname}"/>
+                                    <span class="help-block hidden">Range exceed of 1 - 100 characters</span>
+                                </td>
+                            </tr>
+                            <tr class="fullNameEdit hidden">
+                                <td>
+                                    <strong>Last Name</strong>
+                                </td>
+                                <td>
+                                    <input type="text" name="lastname" id="lastname" form-valid="str:1:100" class="hiddenBorder hidden" value="{k:var contact.lastname}"/>
+                                    <span class="help-block hidden">Range exceed of 1 - 100 characters</span>
+                                </td>
+                            </tr>
+                            <tr class="fullName">
+                                <td>
+                                    <strong>Full Name</strong>
+                                </td>
+                                <td>
+                                    {k:var contact.firstname} {k:var contact.lastname}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Job Title</strong></td>
+                                <td>
+                                    <p>{k:var contact.job_title}</p>
+                                    <input type="text" name="job_title" id="job_title" class="form-control hidden" form-valid="str:0:200" placeholder="Job title" value="{k:var contact.job_title}" data-old="{k:var contact.job_title}" />
+                                    <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone</strong></td>
+                                <td>
+                                    <p><a href="#" class="sbC2C" data-id="{k:var contact.id}">{k:var contact.phone}</a></p>
+                                    <input type="text" name="phone" id="phone" class="form-control hidden" placeholder="Phone" form-valid="str:7:15" value="{k:var contact.phone}"/>
+                                    <span class="help-block hidden">Range exceed of 7 - 15 characters</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td>
+                                    <p><a href="#" id="left-email">{k:var contact.email}</a></p>
+                                    <input type="text" name="email" id="email" class="form-control hidden" form-valid="email:7:100" placeholder="Email" value="{k:var contact.email}"/>
+                                    <span class="help-block hidden">Email invalid or range exceed of 7 - 100 characters</span>
+                                </td>
+                            </tr>
+    
+                            <tr>
+                                <td><strong>Home Address</strong></td>
+                                <td>
+                                    <p>{k:var contact.home_address}</p>
+                                    <input type="text" name="home_address" id="home-address" class="form-control hidden" form-valid="str:0:200" placeholder="Home address" value="{k:var contact.home_address}"/>
+                                    <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                </td>
+                            </tr>
+    
+                            <tr>
+                                <td><strong>Company Address</strong></td>
+                                <td>
+                                    <p>{k:var contact.company_address}</p>
+                                    <input type="text" name="company_address" id="company-address" class="form-control hidden" form-valid="str:0:200" placeholder="Company address" value="{k:var contact.company_address}"/>
+                                    <span class="help-block hidden">Range exceed maximum of 200 characters</span>
+                                </td>
+                            
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                    <hr/>
+                
+                
+                </div>
+            </div>
+        </form>
+       
+    </div>
+
+    
+    <div class="white-box panel p-0">
+     
+    
+        <div class="panel-heading"> {k:var contact.firstname} {k:var contact.lastname}'s Company
+            <div class="pull-right">
+                <a href="#" data-perform="panel-collapse">
+                    <i class="ti-minus"></i>
+                </a>
+                <a class="editCompany">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="cancelCompany hidden">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-wrapper panel-collapse collapse in" aria-expanded="true">
+            <div id="company_name">
+                <center><h3>{k:var contact_company_name}</h3></center>
+               
+            </div>
+            <div class="panel p-0 form-group showCompany hidden senbacAjaxForm" method="post" action="{k:var url_edit}"> 
+                <div class="col-md-12 white-box" id="test">
+
+                    <input type="hidden" name="id" value="{k:var contact.id}">
+                    <input type="hidden" name="token" value="{k:var contacts_change_token}" />
+                    <input type="hidden" name="commit" value="{k:var contacts_change_commit}" />
+
+                    <select class="form-control select2" name="company_id" id="company_of_contact">
+                        <option value="0">No Company</option>
+                        <k:each listcompanies>
+                            <option value="{k:each listcompanies.id}" {k:each listcompanies.selected}>{k:each listcompanies.name}</option>
+                        </k:each listcompanies>
+                    </select>
+                </div>
+            </div>
+            <hr/>
+        </div>        
+    </div>
+</div>

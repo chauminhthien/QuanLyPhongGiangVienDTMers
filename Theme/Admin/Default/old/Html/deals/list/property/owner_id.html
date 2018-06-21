@@ -1,0 +1,12 @@
+<div class="form-group">
+        <label for="owner_id"  class="col-md-12">Owner</label>
+        <div class="col-md-12">
+            <select id="owner_id" form-valid="str:1" class="form-control select2" name="owner_id">
+                <option value="0">None Owner</option>
+                <k:each listaccounts>
+                    <option value="{k:each listaccounts.id}" {k:each listaccounts.selected}>{k:each listaccounts.firstname} {k:each listaccounts.lastname}</option>
+                </k:each listaccounts>
+            </select>
+            <span class="help-block hidden">Select Owner</span>
+        </div>
+    </div>

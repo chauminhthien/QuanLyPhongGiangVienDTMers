@@ -1,0 +1,17 @@
+
+<div class="white-box progress-step">
+  <ul class="btn-group btn-group-justified p-0">
+      <k:each dealProcess>
+        <li class="btn-group" role="group">
+            <a class="bg bg-{k:each dealProcess.classProc}" >
+              {k:each:if dealProcess:ticked}
+                <i class="fa fa-check"></i>
+              {k:each:else dealProcess:ticked}
+                <i>{k:each dealProcess.name}</i>
+              {/k:each:if dealProcess:ticked}
+            </a>
+        </li>
+    </k:each dealProcess>
+  </ul>
+</div>
+
